@@ -10,7 +10,7 @@ import { HttpHandler } from '@angular/common/http'
 import { HttpModule } from '@angular/http'
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
-import { ApolloModule, Apollo } from 'apollo-angular';
+import { ApolloModule, Apollo, APOLLO_OPTIONS } from 'apollo-angular';
 import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
@@ -22,28 +22,38 @@ import { ListComponent } from './list/list.component';
 	declarations: [AppComponent, ListComponent],
 	entryComponents: [],
 	imports: [
-		BrowserModule,
+    BrowserModule,
     HttpClientModule,
+    ApolloModule,
+    HttpLinkModule,
 		IonicModule.forRoot(),
 		AppRoutingModule
 	],
+/*
 	providers: [
-    HttpLink,
 		StatusBar,
 		Apollo,
 		SplashScreen,
 		{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
 	],
+*/
+  providers: [{
+    provide: APOLLO_OPTIONS,
+    useFactory(httpLink: HttpLink) {
+      return {
+        cache: new InMemoryCache(),
+        link: httpLink.create({
+          uri: "http://10.0.1.133:8181/api/graph"
+        })
+      }
+    },
+    deps: [HttpLink]
+  },
+		StatusBar,
+		Apollo,
+		SplashScreen,
+		{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+  ],
 	bootstrap: [AppComponent]
 })
-export class AppModule {
-	constructor(
-		apollo: Apollo,
-		httpLink: HttpLink
-	) {
-		apollo.create({
-      link: httpLink.create({uri: 'https://vm8mjvrnv3.lp.gql.zone/graphql'}),
-			cache: new InMemoryCache()
-		});
-	}
-}
+export class AppModule {}
