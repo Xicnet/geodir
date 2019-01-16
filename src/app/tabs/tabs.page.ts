@@ -4,8 +4,17 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import gql from 'graphql-tag';
+import mutation from 'graphql-tag';
 
 import { Course, Query } from '../types';
+
+const login = gql`
+  mutation submitRepository {
+    createToken(username: "rama", password: "asdasdasd") {
+      token
+    }
+  }
+`;
 
 @Component({
   selector: 'app-tabs',
@@ -13,28 +22,17 @@ import { Course, Query } from '../types';
   styleUrls: ['tabs.page.scss']
 })
 export class TabsPage implements OnInit {
-  courses: Observable<Course[]>;
+  courses: Observable<any>;
   constructor(private apollo: Apollo) { }
 
   ngOnInit() {
     console.log("bla");
-    this.courses = this.apollo.watchQuery<Query>({
-      query: gql`
-        query allCourses {
-          allCourses {
-            id
-            title
-            author
-            description
-            topic
-            url
-          }
-        }
-      `
-    })
-      .valueChanges
-      .pipe(
-        map(result => result.data.allCourses)
-      );
+    this.apollo.mutate<any>({
+      mutation: login
+    }).subscribe(({ data }) => {
+      console.log('got data', data);
+    },(error) => {
+      console.log('there was an error sending the query', error);
+    });
   }
 }
