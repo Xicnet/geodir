@@ -53,6 +53,7 @@ export class TabsPage implements OnInit {
 	loading = true;
 	error: any;
 	map: any;
+	iconUfcSpot: any
 	iconYellow: any
 	iconSelf: any
 	myMarker: any;
@@ -61,6 +62,13 @@ export class TabsPage implements OnInit {
 	private querySubscription: Subscription;
 
 	constructor(private apollo: Apollo, public navCtrl: NavController) {
+		this.iconUfcSpot = leaflet.icon({
+			iconUrl: '/assets/imgs/ufcspot.png',
+      shadowUrl: '/assets/imgs/ufcspot-shadow.png',
+			iconSize: [64, 50],
+			iconAnchor: [32, 64],
+		});
+
 		this.iconYellow = leaflet.icon({
 			iconUrl: '/assets/imgs/yellow.png',
 			iconSize: [32, 32],
@@ -111,12 +119,6 @@ export class TabsPage implements OnInit {
 		this.loadmap();
 	}
 
-	getIcon(role='') {
-		let icon = this.iconSelf;
-		if(role=='vest') icon = this.iconYellow;
-		return icon;
-	}
-
 	loadmap() {
 		this.map = leaflet.map("map").fitWorld();
 
@@ -140,11 +142,11 @@ export class TabsPage implements OnInit {
 				// Update marker position
 				this.myMarker.setLatLng([e.latitude, e.longitude]);
 				this.myMarker.setZIndexOffset(999999);
-				this.myMarker.setIcon(this.getIcon(''));
+				this.myMarker.setIcon(this.iconSelf);
 			} else {
 				this.map.setView([e.latitude, e.longitude], 18);
 				// Create marker
-				this.myMarker = leaflet.marker([e.latitude, e.longitude], {icon: this.getIcon('')}).on('click', () => {
+				this.myMarker = leaflet.marker([e.latitude, e.longitude], {icon: this.iconSelf}).on('click', () => {
 					this.myMarker.setZIndexOffset(999999);
 					alert('Marker clicked');
 				});
@@ -161,7 +163,7 @@ export class TabsPage implements OnInit {
 		data.viewer.allUfcs.forEach(location => {
 			// Check if there is already a marker with that id in the markers object
 			if(!this.markers.hasOwnProperty(location.id)) {
-				this.markers[location.id] = leaflet.marker([location.lat, location.lng], {icon: this.getIcon('vest')});
+				this.markers[location.id] = leaflet.marker([location.lat, location.lng], {icon: this.iconUfcSpot});
 				this.markers[location.id].addTo(this.markerGroup);
 			}
 		});
