@@ -148,7 +148,7 @@ export class TabsPage implements OnInit {
 				// Create marker
 				this.myMarker = leaflet.marker([e.latitude, e.longitude], {icon: this.iconSelf}).on('click', () => {
 					this.myMarker.setZIndexOffset(999999);
-					alert('Marker clicked');
+					alert("We are all over");
 				});
 			}
 			this.markerGroup.addLayer(this.myMarker);
@@ -163,7 +163,10 @@ export class TabsPage implements OnInit {
 		data.viewer.allUfcs.forEach(location => {
 			// Check if there is already a marker with that id in the markers object
 			if(!this.markers.hasOwnProperty(location.id)) {
-				this.markers[location.id] = leaflet.marker([location.lat, location.lng], {icon: this.iconUfcSpot});
+				this.markers[location.id] = leaflet.marker([location.lat, location.lng], {icon: this.iconUfcSpot}).on('click', () => {
+					this.myMarker.setZIndexOffset(999999);
+					alert(location.title+"\n\n...more features soon..");
+				});
 				this.markers[location.id].addTo(this.markerGroup);
 			}
 		});
