@@ -8,16 +8,15 @@ import gql from 'graphql-tag';
 import { Course, Query } from '../types';
 
 @Component({
-  selector: 'app-tabs',
-  templateUrl: 'tabs.page.html',
-  styleUrls: ['tabs.page.scss']
+  selector: 'app-list',
+  templateUrl: './list.component.html',
+  styleUrls: ['./list.component.scss']
 })
-export class TabsPage implements OnInit {
+export class ListComponent implements OnInit {
   courses: Observable<Course[]>;
   constructor(private apollo: Apollo) { }
 
   ngOnInit() {
-    console.log("bla");
     this.courses = this.apollo.watchQuery<Query>({
       query: gql`
         query allCourses {
