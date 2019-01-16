@@ -14,6 +14,8 @@ import { ApolloModule, Apollo, APOLLO_OPTIONS } from 'apollo-angular';
 import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ListComponent } from './list/list.component';
@@ -49,6 +51,7 @@ import { ListComponent } from './list/list.component';
     },
     deps: [HttpLink]
   },
+    Geolocation,
 		StatusBar,
 		Apollo,
 		SplashScreen,
