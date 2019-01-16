@@ -158,7 +158,7 @@ export class TabsPage implements OnInit {
 
 	setMarkers(data) {
 		// Loop over the data array and handle each object
-		data.viewer.allUfc.forEach(location => {
+		data.viewer.allUfcs.forEach(location => {
 			// Check if there is already a marker with that id in the markers object
 			if(!this.markers.hasOwnProperty(location.id)) {
 				this.markers[location.id] = leaflet.marker([location.lat, location.lng], {icon: this.getIcon('vest')});
