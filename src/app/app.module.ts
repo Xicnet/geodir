@@ -45,7 +45,7 @@ import { ListComponent } from './list/list.component';
       return {
         cache: new InMemoryCache(),
         link: httpLink.create({
-          uri: "http://10.0.1.133:8181/api/graph"
+          uri: 'http://use-faircoin-again.thedata.me:1780/api/graph'
         })
       }
     },
