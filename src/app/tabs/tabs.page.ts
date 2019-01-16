@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { NavController } from '@ionic/angular';
+import leaflet from 'leaflet';
 import { Apollo } from 'apollo-angular';
 import { Observable } from 'rxjs';
 import { Subscription } from 'rxjs';
@@ -45,13 +47,15 @@ query($token: String) {
 	styleUrls: ['tabs.page.scss']
 })
 export class TabsPage implements OnInit {
+  @ViewChild('map') mapContainer: ElementRef;
 	token: Observable<any>;
   listings: any[];
   loading = true;
   error: any;
+  map: any;
   private querySubscription: Subscription;
 
-	constructor(private apollo: Apollo) { }
+	constructor(private apollo: Apollo, public navCtrl: NavController) { }
 
 	ngOnInit() {
     this.getToken();
@@ -84,4 +88,30 @@ export class TabsPage implements OnInit {
         console.log("Listing data: ", data);
       });
 	}
+
+  ionViewDidEnter() {
+    this.loadmap();
+  }
+
+  loadmap() {
+    this.map = leaflet.map("map").fitWorld();
+    leaflet.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attributions: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+      maxZoom: 18
+    }).addTo(this.map);
+    this.map.locate({
+      setView: true,
+      maxZoom: 10
+    }).on('locationfound', (e) => {
+      let markerGroup = leaflet.featureGroup();
+      let marker: any = leaflet.marker([e.latitude, e.longitude]).on('click', () => {
+        alert('Marker clicked');
+      })
+      markerGroup.addLayer(marker);
+      this.map.addLayer(markerGroup);
+      }).on('locationerror', (err) => {
+        alert(err.message);
+    })
+
+  }
 }

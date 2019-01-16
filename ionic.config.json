@@ -1,5 +1,7 @@
 {
   "name": "ufc-frontend",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
