@@ -76,9 +76,9 @@ export class TabsPage implements OnInit {
 		});
 
 		this.iconSelf = leaflet.icon({
-			iconUrl: '/assets/imgs/me.png',
-			iconSize: [32, 32],
-			iconAnchor: [16, 32],
+      iconUrl: '/assets/imgs/me.png',
+      shadowUrl: '/assets/imgs/me-shadow.png',
+      iconAnchor: [128, 100],
 		});
 	}
 
