@@ -13,7 +13,7 @@ import { Course, Query } from '../types';
 
 const login = gql`
 	mutation submitRepository {
-		createToken(username: "rama", password: "asdasdasd") {
+		createToken(username: "admin", password: "ufcaufca") {
 			token
 		}
 	}
