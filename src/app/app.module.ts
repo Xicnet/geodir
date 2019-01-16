@@ -20,43 +20,36 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ListComponent } from './list/list.component';
 
+export function createApollo(httpLink: HttpLink) {
+  return {
+    link: httpLink.create({uri: 'https://ufcdata.thedata.me/api/graph'}),
+    cache: new InMemoryCache(),
+  };
+}
+
 @NgModule({
-	declarations: [AppComponent, ListComponent],
-	entryComponents: [],
-	imports: [
+  declarations: [AppComponent, ListComponent],
+  entryComponents: [],
+  imports: [
     BrowserModule,
     HttpClientModule,
     ApolloModule,
     HttpLinkModule,
-		IonicModule.forRoot(),
-		AppRoutingModule
-	],
-/*
-	providers: [
-		StatusBar,
-		Apollo,
-		SplashScreen,
-		{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
-	],
-*/
-  providers: [{
-    provide: APOLLO_OPTIONS,
-    useFactory(httpLink: HttpLink) {
-      return {
-        cache: new InMemoryCache(),
-        link: httpLink.create({
-          uri: 'http://use-faircoin-again.thedata.me:1780/api/graph'
-        })
-      }
-    },
-    deps: [HttpLink]
-  },
-    Geolocation,
-		StatusBar,
-		Apollo,
-		SplashScreen,
-		{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    IonicModule.forRoot(),
+    AppRoutingModule
   ],
-	bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: APOLLO_OPTIONS,
+      useFactory: createApollo,
+      deps: [HttpLink]
+    },
+    Geolocation,
+    StatusBar,
+    Apollo,
+    SplashScreen,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}
