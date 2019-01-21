@@ -49,20 +49,22 @@
     <radialGradient
        gradientUnits="userSpaceOnUse"
        r="514"
-       cy="281"
-       cx="396"
+       cy="206.20189"
+       cx="384.82281"
        id="a"
-       gradientTransform="matrix(0.66031872,0,0,0.66031872,-856.49769,-90.971284)">
+       gradientTransform="matrix(0.45669334,0,-4.5505115e-8,0.66031872,-786.69061,-75.697868)"
+       fx="384.82281"
+       fy="206.20189">
       <stop
          id="stop12"
          stop-color="#c0cadd"
          offset="0"
-         style="stop-color:#feffff;stop-opacity:1" />
+         style="stop-color:#ffffff;stop-opacity:0.01568628" />
       <stop
          id="stop14"
          stop-color="#b3e0df"
          offset="1"
-         style="stop-color:#d7eeee;stop-opacity:1" />
+         style="stop-color:#b3e0df;stop-opacity:1" />
     </radialGradient>
     <linearGradient
        inkscape:collect="always"
@@ -139,7 +141,7 @@
     <linearGradient
        inkscape:collect="always"
        xlink:href="#b"
-       id="linearGradient1865"
+       id="linearGradient868"
        gradientUnits="userSpaceOnUse"
        x1="400"
        y1="148"
@@ -148,7 +150,7 @@
     <linearGradient
        inkscape:collect="always"
        xlink:href="#b"
-       id="linearGradient1867"
+       id="linearGradient870"
        gradientUnits="userSpaceOnUse"
        x1="400"
        y1="148"
@@ -157,7 +159,7 @@
     <linearGradient
        inkscape:collect="always"
        xlink:href="#b"
-       id="linearGradient1869"
+       id="linearGradient872"
        gradientUnits="userSpaceOnUse"
        x1="400"
        y1="148"
@@ -172,10 +174,10 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.24748738"
-     inkscape:cx="2102.4673"
-     inkscape:cy="230.14053"
+     inkscape:cx="-47.790003"
+     inkscape:cy="-1483.2812"
      inkscape:document-units="mm"
-     inkscape:current-layer="g2486"
+     inkscape:current-layer="layer1"
      showgrid="false"
      fit-margin-top="0"
      fit-margin-left="0"
@@ -195,7 +197,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -206,15 +208,15 @@
      transform="translate(852.12609,-3.3000158)">
     <rect
        style="display:inline;fill:url(#a);stroke-width:0.66031879"
-       y="-90.971436"
-       x="-856.4978"
+       y="-75.698364"
+       x="-865.05042"
        width="528.255"
        height="264.1275"
        id="rect24" />
     <g
        style="display:inline;fill-opacity:0.4"
        id="g32"
-       transform="matrix(0.63008072,0,0,0.63008072,-847.21839,-154.52536)">
+       transform="matrix(0.63008072,0,0,0.63008072,-794.83356,-168.95791)">
       <circle
          style="fill:url(#linearGradient1529)"
          cx="267.5"
@@ -235,7 +237,7 @@
          id="circle30" />
     </g>
     <rect
-       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#fafafa;stroke-width:0.61020356;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="opacity:1;fill:#ffffff;fill-opacity:0.00222717;stroke:#fafafa;stroke-width:0.61020356;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect1742"
        width="504.68414"
        height="61.969471"
@@ -290,21 +292,21 @@
     <g
        style="display:inline;fill-opacity:0.4"
        id="g32-5-3-9"
-       transform="matrix(0,0.63008072,-0.63008072,0,-660.95378,-215.1779)">
+       transform="matrix(0,0.63008072,-0.63008072,0,-1045.2874,-145.15328)">
       <circle
-         style="fill:url(#linearGradient1865)"
+         style="fill:url(#linearGradient868)"
          cx="267.5"
          cy="61"
          r="300"
          id="circle26-6-6-2" />
       <circle
-         style="fill:url(#linearGradient1867)"
+         style="fill:url(#linearGradient870)"
          cx="532.5"
          cy="61"
          r="300"
          id="circle28-2-0-0" />
       <circle
-         style="fill:url(#linearGradient1869)"
+         style="fill:url(#linearGradient872)"
          cx="400"
          cy="30"
          r="300"
@@ -315,7 +317,7 @@
        y="0"
        xlink:href="#g32-5-3-9"
        id="use1740"
-       transform="matrix(-1,0,0,1,-1191.088,60.811237)"
+       transform="matrix(-1,0,0,1,-1575.4215,-9.2133774)"
        width="100%"
        height="100%" />
     <rect
