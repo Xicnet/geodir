@@ -19,6 +19,7 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ListComponent } from './list/list.component';
+import { PopoverPageModule } from './popover/popover.module';
 
 export function createApollo(httpLink: HttpLink) {
   return {
@@ -36,7 +37,8 @@ export function createApollo(httpLink: HttpLink) {
     ApolloModule,
     HttpLinkModule,
     IonicModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    PopoverPageModule
   ],
   providers: [
     {
