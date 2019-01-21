@@ -14,6 +14,7 @@ import { Course, Query } from '../types';
 
 import { PopoverPage } from '../popover/popover.page';
 
+const apiUrl = "https://use.fair-coin.org/wp-json/custom/v1/all-posts";
 
 function hexToRGBA(hex,opacity){
   hex = hex.replace('#','');
@@ -91,9 +92,8 @@ export class TabsPage implements OnInit {
   /* Get listings using JSON */
   getListingJSON() {
     console.log("* Getting listing");
-    var url = 'http://localhost:83/wp-json/custom/v1/all-posts';
 
-    this.http.get(url)
+    this.http.get(apiUrl)
       .subscribe(data => {
         console.log(data);
         this.updateMarkers(data);
@@ -127,7 +127,7 @@ export class TabsPage implements OnInit {
         description = item.properties.description;
       }
 
-      marker[item.properties.id].bindPopup(image+"<b>"+item.properties.name+"</b><br/>"+description);
+      marker[item.properties.id].bindPopup("<b>"+item.properties.name+"</b><br/>"+description+image);
 
       marker[item.properties.id].on('mouseover', function(e) {
         this.openPopup();
