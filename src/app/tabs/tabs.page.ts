@@ -102,6 +102,8 @@ export class TabsPage implements OnInit {
 
   updateMarkers(items) {
     var marker = {};
+    var image = "";
+    var description = "";
     items.response.forEach(item => {
       var lat = item.geometry.coordinates[1];
       var lon = item.geometry.coordinates[0];
@@ -114,11 +116,19 @@ export class TabsPage implements OnInit {
         // html: "<img style='width:30px;height:30px;border: 2px solid " + hexToRGBA(item.properties.icon_marker_color, 0.2) + ";' class='marker marker-" + item.properties.icon_marker_color + "' src='statics/img/categories/" + item.properties.icon_name + "_black.svg' />"
       });
       marker[item.properties.id] = leaflet.marker([lat, lon], {icon: this.iconUfcSpot});
-      if(item.properties.description!=null) {
-        marker[item.properties.id].bindPopup("<b>"+item.properties.name+"</b><br><i>"+item.properties.description+"</i>");
-      } else {
-        marker[item.properties.id].bindPopup("<b>"+item.properties.name+"</b>");
+
+      if(item.properties.image!=null) {
+        console.log( item.properties.image);
+        if(item.properties.image.length) {
+          image = `<img src="`+item.properties.image[0]+`"/>`;
+        }
       }
+      if(item.properties.description!=null) {
+        description = item.properties.description;
+      }
+
+      marker[item.properties.id].bindPopup(image+"<b>"+item.properties.name+"</b><br/>"+description);
+
       marker[item.properties.id].on('mouseover', function(e) {
         this.openPopup();
       });
