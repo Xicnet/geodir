@@ -83,7 +83,7 @@ export class Tab1Page {
 
   loadmap() {
     this.map = leaflet.map("map")
-    this.map.fitWorld().zoomIn();
+    //this.map.fitWorld().zoomIn();
 
     leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attributions: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
@@ -163,12 +163,12 @@ export class Tab1Page {
         this.myMarker.setLatLng([e.latitude, e.longitude]);
         this.myMarker.setIcon(this.iconSelf);
       } else {
-        this.map.setView([e.latitude, e.longitude], 12);
+        this.map.setView([e.latitude, e.longitude], 5);
         // Create marker
         this.myMarker = leaflet.marker([e.latitude, e.longitude], {icon: this.iconSelf}).on('click', function(e) {
           this.openPopup();
         });
-        this.myMarker.setZIndexOffset(999999);
+        this.myMarker.setZIndexOffset(1);
       }
       this.selflayer.addLayer(this.myMarker);
     }).on('locationerror', (err) => {
