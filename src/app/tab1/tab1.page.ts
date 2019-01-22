@@ -43,10 +43,10 @@ export class Tab1Page {
   ) {
     this.iconUfcSpot = leaflet.icon({
       iconUrl: '/assets/imgs/ufcspot.png',
-      shadowUrl: '/assets/imgs/ufcspot-shadow.png',
-      iconSize: [64, 64],
-      iconAnchor: [32, 0],
-      popupAnchor: [-16, 0],
+      //shadowUrl: '/assets/imgs/ufcspot-shadow.png',
+      iconSize: [38, 58],
+      iconAnchor: [16, 58],
+      popupAnchor: [2, -58],
     });
 
     this.iconYellow = leaflet.icon({
@@ -57,9 +57,9 @@ export class Tab1Page {
 
     this.iconSelf = leaflet.icon({
       iconUrl: '/assets/imgs/me.png',
-      shadowUrl: '/assets/imgs/me-shadow.png',
-      iconSize: [64, 92],
-      iconAnchor: [32, 92],
+      //shadowUrl: '/assets/imgs/me-shadow.png',
+      iconSize: [38, 58],
+      iconAnchor: [16, 58],
     });
   }
 
