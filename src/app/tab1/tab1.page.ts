@@ -19,6 +19,20 @@ function hexToRGBA(hex,opacity){
   return result;
 }
 
+var text_truncate = function(str, length, ending) {
+  if (length == null) {
+    length = 100;
+  }
+  if (ending == null) {
+    ending = '...';
+  }
+  if (str.length > length) {
+    return str.substring(0, length - ending.length) + ending;
+  } else {
+    return str;
+  }
+};
+
 const apiUrl = "https://use.fair-coin.org/wp-json/custom/v1/all-posts";
 //const apiUrl = "http://localhost:83/wp-json/custom/v1/all-posts";
 
@@ -110,24 +124,24 @@ export class Tab1Page {
       if(item.properties.image!=null) {
         console.log( item.properties.image);
         if(item.properties.image.length) {
-          image = `<img src="`+item.properties.image[0]+`"/>`;
+          image = `<img src="`+item.properties.image[0]+`" align="top"/>`;
         }
       }
       if(item.properties.description!=null) {
-        description = item.properties.description;
+        description = `<div>`+text_truncate(item.properties.description, 200, "...")+` <a href="">[read more]</a></div>`;
       }
 
-      marker[item.properties.id].bindPopup("<b>"+item.properties.name+"</b><br/>"+description+image);
+      marker[item.properties.id].bindPopup(`<div><b>`+item.properties.name+`</b><br/>`+description+image+`</div>`);
 
       marker[item.properties.id].on('mouseover', function(e) {
-        this.openPopup();
+        //this.openPopup();
       });
       marker[item.properties.id].on('mouseout', function(e) {
-        this.closePopup();
+        //this.closePopup();
       });
       marker[item.properties.id].on('click', function(e) {
         // show popup?
-        //this.openPopup();
+        this.openPopup();
       });
       marker[item.properties.id].addTo(this.locations);
     });
