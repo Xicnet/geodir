@@ -20,6 +20,7 @@ function hexToRGBA(hex,opacity){
 }
 
 const apiUrl = "https://use.fair-coin.org/wp-json/custom/v1/all-posts";
+//const apiUrl = "http://localhost:83/wp-json/custom/v1/all-posts";
 
 @Component({
   selector: 'app-tab1',
@@ -57,8 +58,8 @@ export class Tab1Page {
     this.iconSelf = leaflet.icon({
       iconUrl: '/assets/imgs/me.png',
       shadowUrl: '/assets/imgs/me-shadow.png',
-      iconSize: [128, 128],
-      iconAnchor: [128, 100],
+      iconSize: [64, 92],
+      iconAnchor: [32, 92],
     });
   }
 
@@ -67,13 +68,14 @@ export class Tab1Page {
   }
 
   loadmap() {
-    this.map = leaflet.map("map").fitWorld();
+    this.map = leaflet.map("map")
+    this.map.fitWorld().zoomIn();
 
     leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attributions: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
       maxZoom: 18
     }).addTo(this.map);
-    //this.addMyMarker();
+    this.addMyMarker();
     this.locations = leaflet.markerClusterGroup();
     this.getListingJSON();
   }
@@ -85,7 +87,6 @@ export class Tab1Page {
       .subscribe(data => {
         console.log(data);
         this.updateMarkers(data);
-        //layers: leaflet.Layer[ data ];
       });
   }
 
