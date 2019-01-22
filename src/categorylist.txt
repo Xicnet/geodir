@@ -2,7 +2,7 @@ FairCoop Services
   Local Nodes
   FairPay
   FairCoin PoE
-
+  Events
 Activism
   Fair trade
   Feminism
@@ -11,8 +11,6 @@ Activism
   Social movement
   Solidarity
   Donation
-
-
 Arts & Culture
   Art Gallery
   Digital Arts & graphic design
@@ -28,8 +26,6 @@ Arts & Culture
   Sport
   Athenaeum - Squat
   Toys
-
-
 Craft
   Musical Instruments
   Textile
@@ -42,13 +38,10 @@ Craft
   Mineral Stones
   Natural Elements
   Paper
-
-
 Advising / consulting services
   Architecture, construction, rehabilitation
   Ethical insurance
   Legal and administrative services
-
 Body care and Hygiene
   Childcare
   Cosmetics
@@ -60,79 +53,65 @@ Body care and Hygiene
   Manual and Natural Cares
   Facilitation & Mediacion
   Medical Services
-
 Coffees and Restaurants
   Coffes
   Bars
   Restaurants
-
 Clothes, shoes ands accessories
   Shoes
   Clothes
   Accessories
   Kid clothes
-
-
-
 Communication & publishing
   Film and Audivisual
   Magazines & Newspapers
   Alternative Community Media
   Editing & Translation
-
 Community, Networks, Commons & Free Knowledge
   Neighborhood Associations
   Fablabs
   Community Gardens
   Hackerspaces
-
 Cooperatives
-
-
 Economy
   Ethical banking & Financing
-
-
-
 Education, Training & Research
-Free schools
-Languages
-Shared upbringing
-Event
-Fair Trade
+  Free schools
+  Languages
+  Shared upbringing
 Food & Drink
-Bakery
-Fruits & Vegetables Store
-Other Food
-
+  Bakery
+  Fruits & Vegetables Store
+  Other Food
 Housing & Lodging
-Apartment
-Bed & Breakfast
-Camping
-Hotel
-Sell & Rent
-Rural Hotel
+  Apartment
+  Bed & Breakfast
+  Camping
+  Hotel
+  Sell & Rent
+  Rural Hotel
 Nature
-Animals
-Adventure
-Ecology
-Renewable Energy
-Science
+  Animals
+  Adventure
+  Ecology
+  Renewable Energy
+  Science
 Second Hand & Barter
 Supplies
-Carpentry
-Cleaning Products
-Electricity
-Hardware
-Home Products
-Office Products
-Plumbing
-Restoration
+  Carpentry
+  Cleaning Products
+  Electricity
+  Hardware
+  Home Products
+  Office Products
+  Plumbing
+  Restoration
 Technology, electronics & Internet
-Software
+  Software
+  IT Networks
 Transport & Travel
-Electrical Vehicle Charger
-Messagery
-Shared vehicle
-Circular Economy storage
-Responsable Tourism
+  Electrical Vehicle Charger
+  Messagery
+  Shared vehicle
+  Circular Economy storage
+  Responsable Tourism
