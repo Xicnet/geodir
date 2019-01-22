@@ -78,8 +78,19 @@
 
 
 ion-toolbar {
-    --background: url('/assets/imgs/fond.svg') bottom no-repeat;
+  --background: url('/assets/imgs/fond.svg') bottom no-repeat;
 }
 ion-tab-bar {
-    --background: url('/assets/imgs/fond2.svg') bottom no-repeat;
+  --background: url('/assets/imgs/fond2.svg') bottom no-repeat;
+}
+
+ion-popover{
+  ion-backdrop{
+    opacity: 0.5 !important;
+  }
+  .popover-wrapper{
+    .popover-content{
+      width:90%;
+    }
+  }
 }

@@ -1,12 +1,16 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
+import { PopoverController } from '@ionic/angular';
 import { latLng, tileLayer } from 'leaflet';
 import { HttpClient } from '@angular/common/http';
 //import { map } from 'rxjs/operators';
 import leaflet from 'leaflet';
+import { PopoverPage } from './../popover/popover.page';
 
 declare let L;
 import 'leaflet';
 import 'leaflet.markercluster';
+declare var jQuery: any;
+
 
 
 function hexToRGBA(hex,opacity){
@@ -53,7 +57,8 @@ export class Tab1Page {
   selflayer: any;
   layers: any;
 
-  constructor(public http: HttpClient
+  constructor(public http: HttpClient,
+    private popoverController: PopoverController
   ) {
     this.iconUfcSpot = leaflet.icon({
       iconUrl: '/assets/imgs/ufcspot.png',
@@ -99,7 +104,6 @@ export class Tab1Page {
 
     this.http.get(apiUrl)
       .subscribe(data => {
-        console.log(data);
         this.updateMarkers(data);
       });
   }
@@ -121,17 +125,34 @@ export class Tab1Page {
       });
       marker[item.properties.id] = leaflet.marker([lat, lon], {icon: this.iconUfcSpot});
 
-      if(item.properties.image!=null) {
-        console.log( item.properties.image);
-        if(item.properties.image.length) {
-          image = `<img src="`+item.properties.image[0]+`" align="top"/>`;
-        }
-      }
       if(item.properties.description!=null) {
-        description = `<div>`+text_truncate(item.properties.description, 200, "...")+` <a href="">[read more]</a></div>`;
+        description = `<div>`+text_truncate(item.properties.description, 200, "...")+`</div>`;
       }
 
-      marker[item.properties.id].bindPopup(`<div><b>`+item.properties.name+`</b><br/>`+description+image+`</div>`);
+      if(item.properties.image!=null) {
+        if(item.properties.image.length) {
+          image = `<img src="`+item.properties.image[0][0]+`" align="top"/>`;
+        }
+      }
+      // Create an element to hold all your text and markup
+      var container = jQuery('<div />');
+
+      // Delegate all event handling for the container itself and its contents to the container
+      container.on('click', '.smallPolygonLink', () => {
+        this.openPopover();
+      });
+
+      // Insert whatever you want into the container, using whichever approach you prefer
+      container.html(`<div><b>`+item.properties.name+`</b><br/>`+description+image+`</div>`);
+      //container.append("<a class='smallPolygonLink'>[more info]</a>.");
+      container.append(`<ion-button class="smallPolygonLink" expand="full">More info</ion-button>`);
+      //container.append(jQuery('<span class="bold">').text(" :)"))
+
+      // Insert the container into the popup
+      marker[item.properties.id].bindPopup(container[0]);
+
+
+      //marker[item.properties.id].bindPopup(`<div><b>`+item.properties.name+`</b><br/>`+description+image+`</div>`);
 
       marker[item.properties.id].on('mouseover', function(e) {
         //this.openPopup();
@@ -175,5 +196,16 @@ export class Tab1Page {
       console.log("ERROR: ", err.message);
     })
 
+  }
+
+  async openPopover() {
+    const popover = await this.popoverController.create({
+      component: PopoverPage,
+      //event: ev,
+      componentProps: {
+        custom_id: "some value"
+      }
+    });
+    await popover.present();
   }
 }
