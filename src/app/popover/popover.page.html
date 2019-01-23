@@ -5,10 +5,7 @@
 </ion-header>
 
 <ion-content padding>
-    <div [innerHTML]="data.properties.description"></div>
-    <img *ngIf="data.properties.image" [src]="data.properties.image"/>
-
-    <p>{{ data.properties.image }}</p>
-
-
+    <img width="320" height="240" *ngIf="data.properties.image" [src]="data.properties.image"/>
+      <div [innerHTML]="data.properties.description"></div>
+          <img src="/assets/imgs/icon.png" alt="Use Faircoin" width="35px" >
 </ion-content>
