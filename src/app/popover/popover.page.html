@@ -1,23 +1,14 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>popover</ion-title>
+    <ion-title><div [innerHTML]="data.properties.name"></div></ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
+    <div [innerHTML]="data.properties.description"></div>
+    <img *ngIf="data.properties.image" [src]="data.properties.image"/>
 
-  <h3>Welcome to UseFairCoin</h3>
-  ssdlkfjslkdjflk fsld ljds flskd jfsd flksdf jlksd jflskdf jslkd ljskfldk fjlkdsf sld
-  ssdlkfjslkdjflk fsld ljds flskd jfsd flksdf jlksd jflskdf jslkd ljskfldk fjlkdsf sld
-  ssdlkfjslkdjflk fsld ljds flskd jfsd flksdf jlksd jflskdf jslkd ljskfldk fjlkdsf sld
-  ssdlkfjslkdjflk fsld ljds flskd jfsd flksdf jlksd jflskdf jslkd ljskfldk fjlkdsf sld
-  ssdlkfjslkdjflk fsld ljds flskd jfsd flksdf jlksd jflskdf jslkd ljskfldk fjlkdsf sld
-  ssdlkfjslkdjflk fsld ljds flskd jfsd flksdf jlksd jflskdf jslkd ljskfldk fjlkdsf sld
-  ssdlkfjslkdjflk fsld ljds flskd jfsd flksdf jlksd jflskdf jslkd ljskfldk fjlkdsf sld
-  ssdlkfjslkdjflk fsld ljds flskd jfsd flksdf jlksd jflskdf jslkd ljskfldk fjlkdsf sld
-  ssdlkfjslkdjflk fsld ljds flskd jfsd flksdf jlksd jflskdf jslkd ljskfldk fjlkdsf sld
-  ssdlkfjslkdjflk fsld ljds flskd jfsd flksdf jlksd jflskdf jslkd ljskfldk fjlkdsf sld
-  ssdlkfjslkdjflk fsld ljds flskd jfsd flksdf jlksd jflskdf jslkd ljskfldk fjlkdsf sld
+    <p>{{ data.properties.image }}</p>
 
 
 </ion-content>

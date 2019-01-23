@@ -115,6 +115,7 @@ export class Tab1Page {
     items.response.forEach(item => {
       var lat = item.geometry.coordinates[1];
       var lon = item.geometry.coordinates[0];
+      var img = '';
       var icon = leaflet.divIcon({
         className: 'markerInvisible',
         popupAnchor:  [10, 0], // point from which the popup should open relative to the iconAnchor
@@ -131,28 +132,25 @@ export class Tab1Page {
 
       if(item.properties.image!=null) {
         if(item.properties.image.length) {
-          image = `<img src="`+item.properties.image[0][0]+`" align="top"/>`;
+          if(typeof item.properties.image[0] == 'string') item.properties.image = item.properties.image[0];
+          else if(typeof item.properties.image == 'object') item.properties.image = item.properties.image[0][0];
+          image = `<img src="`+img+`" align="top"/>`;
         }
       }
       // Create an element to hold all your text and markup
       var container = jQuery('<div />');
 
       // Delegate all event handling for the container itself and its contents to the container
-      container.on('click', '.smallPolygonLink', () => {
-        this.openPopover();
+      container.on('click', '.more-info-button', () => {
+        this.openPopover(item);
       });
 
       // Insert whatever you want into the container, using whichever approach you prefer
       container.html(`<div><b>`+item.properties.name+`</b><br/>`+description+image+`</div>`);
-      //container.append("<a class='smallPolygonLink'>[more info]</a>.");
-      container.append(`<ion-button class="smallPolygonLink" expand="full">More info</ion-button>`);
-      //container.append(jQuery('<span class="bold">').text(" :)"))
+      container.append(`<ion-button class="more-info-button" expand="full">More info</ion-button>`);
 
       // Insert the container into the popup
       marker[item.properties.id].bindPopup(container[0]);
-
-
-      //marker[item.properties.id].bindPopup(`<div><b>`+item.properties.name+`</b><br/>`+description+image+`</div>`);
 
       marker[item.properties.id].on('mouseover', function(e) {
         //this.openPopup();
@@ -198,12 +196,12 @@ export class Tab1Page {
 
   }
 
-  async openPopover() {
+  async openPopover(data) {
     const popover = await this.popoverController.create({
       component: PopoverPage,
       //event: ev,
       componentProps: {
-        custom_id: "some value"
+        data: data
       }
     });
     await popover.present();
