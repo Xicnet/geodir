@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-searchbar [formControl]="searchControl" (ionInput)="onSearchInput()"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+<ion-content text-center padding>
+  <ion-list-header color="tertiary">
+    <h1>Listings</h1>
+  </ion-list-header>
+
+
+  <div *ngIf="searching" class="spinner-container">
+    <ion-spinner></ion-spinner>
+  </div>
+
+  <ion-list>
+    <ion-item *ngFor="let item of items">
+      <ion-thumbnail slot="start">
+        <ion-img [src]="item.properties.image || 'assets/imgs/default.png'"></ion-img>
+      </ion-thumbnail>
+      <ion-label>{{item.properties.name}}</ion-label>
+      <br/>
+      <span [innerHTML]="(item.properties.description.length>200)? (item.properties.description | slice:0:200)+'..':(item.properties.description)"></span>
+    </ion-item>
+  </ion-list>
+</ion-content>
