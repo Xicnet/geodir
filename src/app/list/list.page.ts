@@ -14,13 +14,15 @@ export class ListPage implements OnInit {
   searchTerm: string = '';
   searchControl: FormControl;
   items: any;
+  searching: any = false;
   constructor(public navCtrl: NavController, public dataService: DataService) {
     this.searchControl = new FormControl();
   }
 
   ngOnInit() {
     this.setFilteredItems('');
-    this.searchControl.valueChanges.pipe(debounceTime(700)).subscribe(search => {
+    this.searchControl.valueChanges.pipe(debounceTime(300)).subscribe(search => {
+      this.searching = false;
       this.setFilteredItems(search);
     });
 
@@ -29,4 +31,9 @@ export class ListPage implements OnInit {
   setFilteredItems(search) {
     this.items = this.dataService.filterItems(search);
   }
+
+  onSearchInput(){
+    this.searching = true;
+  }
+
 }
