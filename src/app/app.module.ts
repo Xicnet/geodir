@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -18,8 +19,8 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ListComponent } from './list/list.component';
 import { PopoverPageModule } from './popover/popover.module';
+import { DataService } from './providers/data.service';
 
 export function createApollo(httpLink: HttpLink) {
   return {
@@ -29,10 +30,11 @@ export function createApollo(httpLink: HttpLink) {
 }
 
 @NgModule({
-  declarations: [AppComponent, ListComponent],
+  declarations: [AppComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
+    FormsModule,
     HttpClientModule,
     ApolloModule,
     HttpLinkModule,
@@ -50,6 +52,7 @@ export function createApollo(httpLink: HttpLink) {
     StatusBar,
     Apollo,
     SplashScreen,
+    DataService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
