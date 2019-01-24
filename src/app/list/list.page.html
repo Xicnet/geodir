@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-searchbar mode="md"></ion-searchbar>
+    <ion-searchbar [formControl]="searchControl" (ionInput)="onSearchInput()"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 <ion-content text-center padding>
@@ -8,7 +8,6 @@
     <h1>Listings</h1>
   </ion-list-header>
 
-  <ion-searchbar [formControl]="searchControl" (ionInput)="onSearchInput()"></ion-searchbar>
 
   <div *ngIf="searching" class="spinner-container">
     <ion-spinner></ion-spinner>
@@ -21,7 +20,7 @@
       </ion-thumbnail>
       <ion-label>{{item.properties.name}}</ion-label>
       <br/>
-      {{ (item.properties.description.length>200)? (item.properties.description | slice:0:200)+'..':(item.properties.description) }}
+      <span [innerHTML]="(item.properties.description.length>200)? (item.properties.description | slice:0:200)+'..':(item.properties.description)"></span>
     </ion-item>
   </ion-list>
 </ion-content>
