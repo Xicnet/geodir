@@ -1,0 +1,17 @@
+ TODO
+======
+
+Minor
+
+* Make header in info card popover fixed
+* Fix scroll for info card on desktop
+* Prettify the close button for info card and align it right
+* Add social buttons: web, tw, fb
+* Add phone and address
+* Add picture to marker popup
+
+
+Major 
+
+* Add fulltext search
+* Add user registration and listing management

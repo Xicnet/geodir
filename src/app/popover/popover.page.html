@@ -1,11 +1,13 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title><div [innerHTML]="data.properties.name"></div></ion-title>
+  <ion-toolbar (click)="closePopover()">
+    <ion-title style="float: left; vertical-align: center" [innerHTML]="data.properties.name">
+    </ion-title>
   </ion-toolbar>
+
 </ion-header>
 
 <ion-content padding>
-    <img width="320" height="240" *ngIf="data.properties.image" [src]="data.properties.image"/>
-      <div [innerHTML]="data.properties.description"></div>
-          <img src="/assets/imgs/icon.png" alt="Use Faircoin" width="35px" >
+  <img width="320" height="240" *ngIf="data.properties.image" [src]="data.properties.image"/>
+  <div [innerHTML]="data.properties.description"></div>
+  <img src="/assets/imgs/icon.png" alt="Use Faircoin" width="35px" >
 </ion-content>
