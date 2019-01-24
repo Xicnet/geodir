@@ -9,3 +9,12 @@ ion-icon {
 ion-item-divider {
   min-height:0.02rem;
 }
+
+
+ion-searchbar{
+  --background: rgba(255, 255, 255, 0.51);
+  --icon-color:rgb(101, 135, 120);
+  --color: rgb(101, 135, 120);
+  --placeholder-color:rgba(9, 131, 73, 0.75);
+  --placeholder-opacity: 0.5;
+}
