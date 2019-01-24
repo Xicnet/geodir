@@ -38,7 +38,10 @@ export class DataService {
     console.log("items: ", this.items===undefined, typeof this.items, this.items.response);
     return this.items.response.filter((item) => {
       console.log(item);
-      return item.properties.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+      return (
+        item.properties.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1
+        || item.properties.description.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1
+      );
     });
   }
 }
