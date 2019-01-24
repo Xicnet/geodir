@@ -13,7 +13,38 @@
   </ion-grid>
   </ion-toolbar>
 </ion-header>
-<ion-content text-center padding>
+<ion-content padding>
+
+
+<!-- Card tests -->
+<ion-searchbar></ion-searchbar>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+      <ion-card-title>Card Title</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      Keep close to Nature's heart... and break clear away, once in awhile,
+      and climb a mountain or spend a week in the woods. Wash your spirit clean.
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+  <ion-item>
+    <ion-icon name="pin" slot="start"></ion-icon>
+    <ion-label>ion-item in a card, icon left, button right</ion-label>
+    <ion-button fill="outline" slot="end">View</ion-button>
+  </ion-item>
+
+  <ion-card-content>
+    This is content, without any paragraph or header tags,
+    within an ion-card-content element.
+  </ion-card-content>
+</ion-card>
+<!-- Card tests -->
+
+
   <ion-list-header color="tertiary">
   <h1>Contibutors</h1>
 </ion-list-header>
@@ -46,24 +77,32 @@
       <h1>Licenced under GPL 3.0</h1>
 </ion-item>
 <p><a href="https://www.gnu.org/licenses/gpl-3.0.txt">https://www.gnu.org/licenses/gpl-3.0.txt</a></p>
-<ion-item color="tertiary">
-      <h1>Description</h1>
-</ion-item>
-
-      <h3>This software is a proof-of-concept on how to use a dettached UI which gets data from a backend via an API serving JSON.</h3>
+<ion-card>
+  <ion-item  text-center color="tertiary">
+        <h1>Description</h1>
+  </ion-item>
+      <p><b>This software is a proof-of-concept on how to use a dettached UI which gets data from a backend via an API serving JSON.</b></p>
       <p>In this case we are displaying locations which accept Faircoins.</p>
       <p>Initially, the backend was an independent OCP (valuenetwork (*)) install using GraphQL, however for practical purposes, we've switched to use the Wordpress REST API from use.fair-coin.org</p>
       <p><b>Here we display the GeoLocation of the user (you!) so you can easily find who accepts Faircoins around you.</b></p>
-      <h4>It's recommended and reasonable to try it on your phone with GPS activated.</h4>
+      <p><b>It's recommended and reasonable to try it on your phone with GPS activated.</b></p>
       <p>This was done in collaboration with several FairCoop members and is open for ideas, feature requests, pull requests (mostly!), and contributions (See contributors tab)</p>
       <p>WARNING: this is alpha software and might not work well on every browser yet.</p>
       <p>There is the option to build this as a mobile app, where GeoLocation works much more reliably than with regular browsers.</p>
       <p>Source Code Repository</p>
       <p><a href="https://git.aps.systems/rama/ufc-frontend" class="Internet_20_link">https://git.aps.systems/rama/ufc-frontend</a></p>
       <p>(*) <a href="https://github.com/FreedomCoop/valuenetwork" class="Internet_20_link">https://github.com/FreedomCoop/valuenetwork</a></p>
+<a href="https://fair.coop/">
+    <ion-img src="/assets/imgs/faircoop_color.png" height="40rem">
+    </ion-img>
+</a>
+</ion-card>
 
-<a href="https://fair.coop/"><img src="/assets/imgs/faircoop_color.png" alt="Faircoop" height="80px" ></a>
+
 
 
 
 </ion-content>
+
+
+<!-- pruebas configuraciones de usuarios-->
