@@ -6,6 +6,7 @@
 <ion-content text-center padding>
   <ion-list-header color="tertiary">
     <h1>Listings</h1>
+    {{items$}}
   </ion-list-header>
 
 
@@ -14,7 +15,7 @@
   </div>
 
   <ion-list>
-    <ion-item *ngFor="let item of items">
+    <ion-item *ngFor="let item of items$ | async">
       <ion-thumbnail slot="start">
         <ion-img [src]="item.properties.image || 'assets/imgs/default.png'"></ion-img>
       </ion-thumbnail>

@@ -9,6 +9,7 @@ Minor
 * Add social buttons: web, tw, fb
 * Add phone and address
 * Add picture to marker popup
+* Add auto-padding for marker popup to make it fully visible
 
 
 Major 

@@ -5,6 +5,8 @@ import { HttpClient } from '@angular/common/http';
 //import { map } from 'rxjs/operators';
 import leaflet from 'leaflet';
 import { PopoverPage } from './../popover/popover.page';
+import { DataService } from '../providers/data.service';
+import { map } from 'rxjs/operators';
 
 declare let L;
 import 'leaflet';
@@ -56,9 +58,11 @@ export class Tab1Page {
   locations: any;
   selflayer: any;
   layers: any;
+  items$: any;
 
   constructor(public http: HttpClient,
-    private popoverController: PopoverController
+    private popoverController: PopoverController,
+    public dataService: DataService
   ) {
     this.iconUfcSpot = leaflet.icon({
       iconUrl: '/assets/imgs/ufcspot.png',
@@ -96,15 +100,19 @@ export class Tab1Page {
     }).addTo(this.map);
     this.addMyMarker();
     this.locations = leaflet.markerClusterGroup();
-    this.getListingJSON();
+
+    this.dataService.getGeoJSON().subscribe(res => {
+      console.log(res);
+      this.updateMarkers(res);
+    });
   }
+
   /* Get listings using JSON */
   getListingJSON() {
     console.log("* Getting listing");
 
     this.http.get(apiUrl)
       .subscribe(data => {
-        this.updateMarkers(data);
       });
   }
 
@@ -112,7 +120,7 @@ export class Tab1Page {
     var marker = {};
     var image = "";
     var description = "";
-    items.response.forEach(item => {
+    items.forEach(item => {
       var lat = item.geometry.coordinates[1];
       var lon = item.geometry.coordinates[0];
       var img = '';
@@ -130,6 +138,7 @@ export class Tab1Page {
         description = `<div>`+text_truncate(item.properties.description, 200, "...")+`</div>`;
       }
 
+      /*
       if(item.properties.image!=null) {
         if(item.properties.image.length) {
           if(typeof item.properties.image[0] == 'string') item.properties.image = item.properties.image[0];
@@ -137,6 +146,9 @@ export class Tab1Page {
           image = `<img src="`+img+`" align="top"/>`;
         }
       }
+       */
+      image = `<img width="160" src="`+item.properties.image+`" align="top"/>`;
+      console.log(item.properties.image);
       // Create an element to hold all your text and markup
       var container = jQuery('<div />');
 

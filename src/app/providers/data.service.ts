@@ -1,43 +1,43 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { of } from 'rxjs'
+import { Observable } from 'rxjs'
+import { refCount, pluck, share, shareReplay, tap } from 'rxjs/operators';
 
-const apiUrl = "https://use.fair-coin.org/wp-json/custom/v1/all-posts";
+
+//const apiUrl = "https://use.fair-coin.org/wp-json/custom/v1/all-posts";
+const apiUrl = "http://localhost:83/wp-json/custom/v1/all-posts";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-  items: any;
+  private items$: Observable;
+  public responseCache = new Map();
 
-  constructor(public http: HttpClient) {
-    var _tems = [
-      {title: 'one'},
-      {title: 'two'},
-      {title: 'three'},
-      {title: 'four'},
-      {title: 'five'},
-      {title: 'six'}
-    ]
-    this.getGeoJSON();
+  constructor(private http: HttpClient) {
   }
 
-  getGeoJSON() {
-    this.http.get(apiUrl)
-      .subscribe(data => {
-        this.items = data;
-        //console.log(data);
-      });
+  public getGeoJSON(): Observable<any> {
+    if (!this.items) {
+      this.items = this.http.get<any>(apiUrl)
+        .pipe(shareReplay(1),
+          //.pipe(refCount());
+          map(res => res.response)
+        );
+
+    }
+    return this.items;
   }
 
   filterItems(searchTerm) {
-    if(this.items===undefined) {
+    console.log("filterItems called");
+    if(this.items$===undefined) {
       console.log("no items");
-      return;
+      return true;
     }
-    console.log("items: ", this.items===undefined, typeof this.items, this.items.response);
-    return this.items.response.filter((item) => {
-      console.log(item);
+    return this.items$.response.filter((item) => {
       return (
         item.properties.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1
         || item.properties.description.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1
