@@ -29,7 +29,9 @@ export class ListPage implements OnInit {
   }
 
   setFilteredItems(search) {
+    console.log("setFilteredItems search: ", search);
     this.items$ = this.dataService.filterItems(search);
+    console.log(this.items$.subscribe());
   }
 
   onSearchInput(){
