@@ -1,16 +1,16 @@
 <ion-header>
   <ion-toolbar>
-  <ion-grid>
-    <ion-row>
-      <ion-col text-left>
-        <h1>Information</h1>
-      </ion-col>
-      <ion-col text-right padding-top>
-        <img src="/assets/imgs/icon.png" alt="Use Faircoin" width="50px" >
-      </ion-col>
-    </ion-row>
-      <ion-searchbar mode="md"></ion-searchbar>
-  </ion-grid>
+    <ion-grid>
+      <ion-row>
+        <ion-col text-right padding-top>
+          <img src="/assets/imgs/icon.png" alt="Use Faircoin" width="50px" >
+        </ion-col>
+        <ion-col class="titulo_tabs" color=dark text-left>
+          <h1>Information</h1>
+        </ion-col>
+          <ion-searchbar></ion-searchbar>
+      </ion-row>
+    </ion-grid>
   </ion-toolbar>
 </ion-header>
 
@@ -31,18 +31,90 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-card>
-  <ion-item>
-    <ion-icon name="pin" slot="start"></ion-icon>
-    <ion-label>ion-item in a card, icon left, button right</ion-label>
-    <ion-button fill="outline" slot="end">View</ion-button>
-  </ion-item>
 
-  <ion-card-content>
-    This is content, without any paragraph or header tags,
-    within an ion-card-content element.
-  </ion-card-content>
+
+
+
+<ion-card>
+  <ion-item class="activated" >
+        <ion-icon  name="pin" slot="start" color="primary"></ion-icon>
+        <ion-label>
+          <ion-row>
+            <ion-col size="6" padding>
+              <ion-text color="danger">300 km</ion-text>
+            </ion-col>
+            <ion-col size="6" padding>
+              <ion-text color="success">300 km</ion-text>
+            </ion-col>
+            </ion-row>
+        </ion-label>
+        <ion-button  fill="outline" slot="end" >IR</ion-button>
+  </ion-item>
+  <ion-row justify-content-start>
+      <ion-col size="2">
+        <div>
+        <img src="http://use.fair-coin.org/wp/wp-content/uploads/job-manager-uploads/main_image/2018/11/IMG_2343-600x800.jpg" alt="Use Faircoin" >
+        </div>
+      </ion-col>
+      <ion-col size="10">
+        <ion-card-title>La tienda en casa</ion-card-title>
+        <ion-card-subtitle>Almeria</ion-card-subtitle>
+        <ion-card-content no-padding>
+          This is content, without any paragraph or header tags,
+          within an ion-card-content element.
+        </ion-card-content>
+    <ion-row justify-content-start>
+        <ion-col size="1" no-padding>
+          <ion-img src="/assets/imgs/icons_categories/icon_faircoop.svg" alt="Use Faircoin"></ion-img>
+        </ion-col>
+        <ion-col size="1" no-padding>
+          <ion-img src="/assets/imgs/icons_categories/icon_commons.svg" alt="Use Faircoin"></ion-img>
+        </ion-col>
+        <ion-col size="1" no-padding>
+          <ion-img src="/assets/imgs/icons_categories/icon_donation.svg" alt="Use Faircoin"></ion-img>
+        </ion-col>
+        <ion-col size="1" no-padding>
+          <ion-img src="/assets/imgs/icons_categories/icon_donation.svg" alt="Use Faircoin"></ion-img>
+        </ion-col>
+      </ion-row>
+      </ion-col>
+  </ion-row>
 </ion-card>
+
+
+  <ion-segment>
+    <ion-segment-button checked>
+      <ion-label>Paid</ion-label>
+    </ion-segment-button>
+    <ion-segment-button>
+      <ion-label>Free</ion-label>
+    </ion-segment-button>
+    <ion-segment-button disabled>
+      <ion-label>Top</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+
+  <ion-list>
+    <ion-item>
+      <ion-label>Input</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Toggle</ion-label>
+      <ion-toggle slot="end"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Radio</ion-label>
+      <ion-radio slot="end"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>Checkbox</ion-label>
+      <ion-checkbox slot="start"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+
+
 <!-- Card tests -->
 
 
