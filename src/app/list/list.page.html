@@ -36,15 +36,15 @@
             <ion-card-content no-padding [innerHTML]="(item.properties.description.length>200)? (item.properties.description | slice:0:200)+'..':(item.properties.description)">
             </ion-card-content>
           </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col size="12" padding>
-              <ion-card-content no-padding class="card-footer-links">
-                  <ion-icon name="call" *ngIf="item.properties.phone"></ion-icon>
-                  <ion-icon name="globe" *ngIf="item.properties.website"></ion-icon>
-                  <ion-icon name="logo-twitter" *ngIf="item.properties.twitter"></ion-icon>
-              </ion-card-content>
-            </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12" nopadding>
+            <ion-card-content no-padding class="card-footer-links">
+              <a button href="tel:555-555-5555" target="_system"><ion-icon name="call" *ngIf="item.properties.phone"></ion-icon></a>
+              <a href="{{item.properties.website}}" target="_blank"><ion-icon name="globe" *ngIf="item.properties.website"></ion-icon></a>
+              <a href="https://twitter.com/{{item.properties.twitter}}" target="_blank"><ion-icon name="logo-twitter" *ngIf="item.properties.twitter"></ion-icon></a>
+            </ion-card-content>
+          </ion-col>
         </ion-row>
       </ion-card>
     </ion-item>
