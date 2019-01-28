@@ -8,19 +8,40 @@
     <h1>Listings</h1>
   </ion-list-header>
 
-
   <div *ngIf="searching" class="spinner-container">
     <ion-spinner></ion-spinner>
   </div>
 
-  <ion-list>
-    <ion-item *ngFor="let item of items$ | async">
-      <ion-thumbnail slot="start">
-        <ion-img [src]="item.properties.image || 'assets/imgs/default.png'"></ion-img>
-      </ion-thumbnail>
-      <ion-label>{{item.properties.name}}</ion-label>
-      <br/>
-      <span [innerHTML]="(item.properties.description.length>200)? (item.properties.description | slice:0:200)+'..':(item.properties.description)"></span>
+  <ion-virtual-scroll [items]="items$ | async">
+    <ion-item *virtualItem="let item">
+      <ion-card>
+        <ion-item class="activated" >
+          <ion-icon  name="pin" slot="start" color="primary"></ion-icon>
+          <ion-label>
+            <ion-row>
+              <ion-col size="6" padding>
+                <ion-text color="danger">300 km</ion-text>
+              </ion-col>
+              <ion-col size="6" padding>
+                <ion-text color="success">300 km</ion-text>
+              </ion-col>
+            </ion-row>
+          </ion-label>
+          <ion-button  fill="outline" slot="end" >Go</ion-button>
+        </ion-item>
+        <ion-row justify-content-start>
+            <ion-thumbnail item-start>
+              <ion-img [src]="item.properties.image || 'assets/imgs/default.png'" alt="Use Faircoin"></ion-img>
+            </ion-thumbnail>
+          <ion-col size="10">
+            <ion-card-title [innerHTML]="item.properties.name"></ion-card-title>
+            <ion-card-subtitle>{{item.properties.address}}</ion-card-subtitle>
+            <ion-card-content no-padding [innerHTML]="(item.properties.description.length>200)? (item.properties.description | slice:0:200)+'..':(item.properties.description)">
+            </ion-card-content>
+          </ion-col>
+        </ion-row>
+      </ion-card>
     </ion-item>
-  </ion-list>
+  </ion-virtual-scroll>
+
 </ion-content>
