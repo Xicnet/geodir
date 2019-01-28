@@ -19,12 +19,12 @@
           <ion-icon (click)="openNavigator($event, item.properties.address)" name="pin" slot="start" color="primary"></ion-icon>
           <ion-label>
             <ion-row>
-              <ion-col size="6" padding>
-                <ion-text color="success">~0.5 km</ion-text>
+              <ion-col>
+                <ion-button color="success" fill="outline">+info</ion-button>
+            <a href="https://use.fair-coin.org/wp/wp-admin/post.php?post={{item.properties.id}}&action=edit" target="_blank"><ion-button  fill="outline" slot="end">admin</ion-button></a>
               </ion-col>
             </ion-row>
           </ion-label>
-          <ion-button  fill="outline" slot="end">+info</ion-button>
         </ion-item>
         <ion-row justify-content-start>
           <ion-thumbnail item-start>
@@ -32,7 +32,7 @@
           </ion-thumbnail>
           <ion-col size="10">
             <ion-card-title [innerHTML]="item.properties.name"></ion-card-title>
-            <ion-card-subtitle>{{item.properties.address}}</ion-card-subtitle>
+                <ion-card-subtitle><ion-text color="success">~0.5 km</ion-text> {{item.properties.address}}</ion-card-subtitle>
             <ion-card-content no-padding [innerHTML]="(item.properties.description.length>200)? (item.properties.description | slice:0:200)+'..':(item.properties.description)">
             </ion-card-content>
           </ion-col>
