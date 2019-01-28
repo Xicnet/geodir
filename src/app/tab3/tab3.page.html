@@ -5,10 +5,9 @@
         <ion-col text-right padding-top>
           <img src="/assets/imgs/icon.png" alt="Use Faircoin" width="50px" >
         </ion-col>
-        <ion-col class="titulo_tabs" color=dark text-left>
-          <h1>Information</h1>
-        </ion-col>
-          <ion-searchbar></ion-searchbar>
+          <ion-col class="titulo_tabs" color=dark text-left>
+            <h1>Information</h1>
+          </ion-col>
       </ion-row>
     </ion-grid>
   </ion-toolbar>
@@ -16,160 +15,56 @@
 
 <ion-content padding>
 
-
-<!-- Card tests -->
-<ion-searchbar></ion-searchbar>
-  <ion-card>
-    <ion-card-header>
-      <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-      <ion-card-title>Card Title</ion-card-title>
-    </ion-card-header>
-
-    <ion-card-content>
-      Keep close to Nature's heart... and break clear away, once in awhile,
-      and climb a mountain or spend a week in the woods. Wash your spirit clean.
-    </ion-card-content>
-  </ion-card>
-
-
-
-
-
-<ion-card>
-  <ion-item class="activated" >
-        <ion-icon  name="pin" slot="start" color="primary"></ion-icon>
-        <ion-label>
-          <ion-row>
-            <ion-col size="6" padding>
-              <ion-text color="danger">300 km</ion-text>
-            </ion-col>
-            <ion-col size="6" padding>
-              <ion-text color="success">300 km</ion-text>
-            </ion-col>
-            </ion-row>
-        </ion-label>
-        <ion-button  fill="outline" slot="end" >IR</ion-button>
-  </ion-item>
-  <ion-row justify-content-start>
-      <ion-col size="2">
-        <div>
-        <img src="http://use.fair-coin.org/wp/wp-content/uploads/job-manager-uploads/main_image/2018/11/IMG_2343-600x800.jpg" alt="Use Faircoin" >
-        </div>
-      </ion-col>
-      <ion-col size="10">
-        <ion-card-title>La tienda en casa</ion-card-title>
-        <ion-card-subtitle>Almeria</ion-card-subtitle>
-        <ion-card-content no-padding>
-          This is content, without any paragraph or header tags,
-          within an ion-card-content element.
-        </ion-card-content>
-    <ion-row justify-content-start>
-        <ion-col size="1" no-padding>
-          <ion-img src="/assets/imgs/icons_categories/icon_faircoop.svg" alt="Use Faircoin"></ion-img>
-        </ion-col>
-        <ion-col size="1" no-padding>
-          <ion-img src="/assets/imgs/icons_categories/icon_commons.svg" alt="Use Faircoin"></ion-img>
-        </ion-col>
-        <ion-col size="1" no-padding>
-          <ion-img src="/assets/imgs/icons_categories/icon_donation.svg" alt="Use Faircoin"></ion-img>
-        </ion-col>
-        <ion-col size="1" no-padding>
-          <ion-img src="/assets/imgs/icons_categories/icon_donation.svg" alt="Use Faircoin"></ion-img>
-        </ion-col>
-      </ion-row>
-      </ion-col>
-  </ion-row>
-</ion-card>
-
-
-  <ion-segment>
-    <ion-segment-button checked>
-      <ion-label>Paid</ion-label>
-    </ion-segment-button>
-    <ion-segment-button>
-      <ion-label>Free</ion-label>
-    </ion-segment-button>
-    <ion-segment-button disabled>
-      <ion-label>Top</ion-label>
-    </ion-segment-button>
-  </ion-segment>
-
-
-  <ion-list>
-    <ion-item>
-      <ion-label>Input</ion-label>
-      <ion-input></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label>Toggle</ion-label>
-      <ion-toggle slot="end"></ion-toggle>
-    </ion-item>
-    <ion-item>
-      <ion-label>Radio</ion-label>
-      <ion-radio slot="end"></ion-radio>
-    </ion-item>
-    <ion-item>
-      <ion-label>Checkbox</ion-label>
-      <ion-checkbox slot="start"></ion-checkbox>
-    </ion-item>
-  </ion-list>
-
-
-<!-- Card tests -->
-
-
   <ion-list-header color="tertiary">
-  <h1>Contibutors</h1>
-</ion-list-header>
-<ion-item>
-  Bumbum
-</ion-item>
-<ion-item>
-  Onix
-</ion-item>
-<ion-item>
-  Lynn Foster
-</ion-item>
-<ion-item>
-  Oncle Phil
-</ion-item>
-<ion-item>
-  Bernini
-</ion-item>
-<ion-item>
-  Rama
-</ion-item>
-<ion-item>
-  Apardo
-</ion-item>
-<ion-item>
-  Trid
-</ion-item>
-<a href="https://fair.coop/"><img src="/assets/imgs/logo_ufc.png" alt="Faircoop" height="50px" ></a>
-<ion-item color="tertiary">
-      <h1>Licenced under GPL 3.0</h1>
-</ion-item>
-<p><a href="https://www.gnu.org/licenses/gpl-3.0.txt">https://www.gnu.org/licenses/gpl-3.0.txt</a></p>
-<ion-card>
-  <ion-item  text-center color="tertiary">
-        <h1>Description</h1>
+    <h1>Contibutors</h1>
+  </ion-list-header>
+  <ion-item>
+    Bumbum
   </ion-item>
-      <p><b>This software is a proof-of-concept on how to use a dettached UI which gets data from a backend via an API serving JSON.</b></p>
-      <p>In this case we are displaying locations which accept Faircoins.</p>
-      <p>Initially, the backend was an independent OCP (valuenetwork (*)) install using GraphQL, however for practical purposes, we've switched to use the Wordpress REST API from use.fair-coin.org</p>
-      <p><b>Here we display the GeoLocation of the user (you!) so you can easily find who accepts Faircoins around you.</b></p>
-      <p><b>It's recommended and reasonable to try it on your phone with GPS activated.</b></p>
-      <p>This was done in collaboration with several FairCoop members and is open for ideas, feature requests, pull requests (mostly!), and contributions (See contributors tab)</p>
-      <p>WARNING: this is alpha software and might not work well on every browser yet.</p>
-      <p>There is the option to build this as a mobile app, where GeoLocation works much more reliably than with regular browsers.</p>
-      <p>Source Code Repository</p>
-      <p><a href="https://git.aps.systems/rama/ufc-frontend" class="Internet_20_link">https://git.aps.systems/rama/ufc-frontend</a></p>
-      <p>(*) <a href="https://github.com/FreedomCoop/valuenetwork" class="Internet_20_link">https://github.com/FreedomCoop/valuenetwork</a></p>
-<a href="https://fair.coop/">
-    <ion-img src="/assets/imgs/faircoop_color.png" height="30px">
-    </ion-img>
-</a>
-</ion-card>
+  <ion-item>
+    Onix
+  </ion-item>
+  <ion-item>
+    Lynn Foster
+  </ion-item>
+  <ion-item>
+    Oncle Phil
+  </ion-item>
+  <ion-item>
+    Bernini
+  </ion-item>
+  <ion-item>
+    Rama
+  </ion-item>
+  <ion-item>
+    Apardo
+  </ion-item>
+  <ion-item>
+    Trid
+  </ion-item>
+  <ion-item color="tertiary">
+    <h1>Licenced under GPL 3.0</h1>
+  </ion-item>
+  <p><a href="https://www.gnu.org/licenses/gpl-3.0.txt">https://www.gnu.org/licenses/gpl-3.0.txt</a></p>
+  <ion-card>
+    <ion-item  text-center color="tertiary">
+      <h1>Description</h1>
+    </ion-item>
+    <p><b>This software is a proof-of-concept on how to use a dettached UI which gets data from a backend via an API serving JSON.</b></p>
+    <p>In this case we are displaying locations which accept Faircoins.</p>
+    <p>Initially, the backend was an independent OCP (valuenetwork (*)) install using GraphQL, however for practical purposes, we've switched to use the Wordpress REST API from use.fair-coin.org</p>
+    <p><b>Here we display the GeoLocation of the user (you!) so you can easily find who accepts Faircoins around you.</b></p>
+    <p><b>It's recommended and reasonable to try it on your phone with GPS activated.</b></p>
+    <p>This was done in collaboration with several FairCoop members and is open for ideas, feature requests, pull requests (mostly!), and contributions (See contributors tab)</p>
+    <p>WARNING: this is alpha software and might not work well on every browser yet.</p>
+    <p>There is the option to build this as a mobile app, where GeoLocation works much more reliably than with regular browsers.</p>
+    <p>Source Code Repository</p>
+    <p><a href="https://git.aps.systems/rama/ufc-frontend" class="Internet_20_link">https://git.aps.systems/rama/ufc-frontend</a></p>
+    <p>(*) <a href="https://github.com/FreedomCoop/valuenetwork" class="Internet_20_link">https://github.com/FreedomCoop/valuenetwork</a></p>
+    <a href="https://fair.coop/">
+      Fair.coop
+    </a>
+  </ion-card>
 
 
 
