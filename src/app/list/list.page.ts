@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Platform } from '@ionic/angular';
 
 import { NavController } from '@ionic/angular';
 import { DataService } from '../providers/data.service';
@@ -15,7 +16,7 @@ export class ListPage implements OnInit {
   searchControl: FormControl;
   items$: any;
   searching: any = false;
-  constructor(public navCtrl: NavController, public dataService: DataService) {
+  constructor(public navCtrl: NavController, public dataService: DataService, public platform: Platform) {
     this.searchControl = new FormControl();
   }
 
@@ -36,6 +37,15 @@ export class ListPage implements OnInit {
 
   onSearchInput(){
     this.searching = true;
+  }
+
+  openNavigator(e, coordinates) {
+    let coords = coordinates[1]+','+coordinates[0]
+    if(this.platform.is('cordova')) {
+      window.open('geo:'+coords, '_blank');
+    } else {
+      window.open('https://www.google.com/maps/search/?api=1&query='+coords, '_blank');
+    }
   }
 
 }
