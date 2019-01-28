@@ -39,9 +39,6 @@ var text_truncate = function(str, length, ending) {
   }
 };
 
-const apiUrl = "https://use.fair-coin.org/wp-json/custom/v1/all-posts";
-//const apiUrl = "http://localhost:83/wp-json/custom/v1/all-posts";
-
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -105,15 +102,6 @@ export class Tab1Page {
       console.log(res);
       this.updateMarkers(res);
     });
-  }
-
-  /* Get listings using JSON */
-  getListingJSON() {
-    console.log("* Getting listing");
-
-    this.http.get(apiUrl)
-      .subscribe(data => {
-      });
   }
 
   updateMarkers(items) {

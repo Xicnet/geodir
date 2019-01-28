@@ -40,9 +40,10 @@ export class ListPage implements OnInit {
   }
 
   openNavigator(e, coordinates) {
-    let coords = coordinates[1]+','+coordinates[0]
+    let coords = coordinates;
+    //let coords = coordinates[1]+','+coordinates[0]
     if(this.platform.is('cordova')) {
-      window.open('geo:'+coords, '_blank');
+      window.open('geo:?q='+coords, '_blank');
     } else {
       window.open('https://www.google.com/maps/search/?api=1&query='+coords, '_blank');
     }
