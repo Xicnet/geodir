@@ -1,6 +1,12 @@
 // Ionic Variables and Theming. For more info, please see:
 // http://ionicframework.com/docs/theming/
 
+* {
+  /* Avoid "Will-change memory consumption is too high..." warning */
+  will-change: unset!important;
+}
+
+
 /** Ionic CSS Variables **/
 :root {
   /** primary **/
@@ -75,7 +81,6 @@
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
 }
-
 
 ion-toolbar {
   --background: url('/assets/imgs/fond.svg') bottom no-repeat;

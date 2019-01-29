@@ -99,14 +99,12 @@ export class Tab1Page {
     this.locations = leaflet.markerClusterGroup();
 
     this.dataService.getGeoJSON().subscribe(res => {
-      console.log(res);
       this.updateMarkers(res);
     });
   }
 
   updateMarkers(items) {
     var marker = {};
-    var image = "";
     var description = "";
     items.forEach(item => {
       var lat = item.geometry.coordinates[1];
@@ -126,17 +124,6 @@ export class Tab1Page {
         description = `<div>`+text_truncate(item.properties.description, 200, "...")+`</div>`;
       }
 
-      /*
-      if(item.properties.image!=null) {
-        if(item.properties.image.length) {
-          if(typeof item.properties.image[0] == 'string') item.properties.image = item.properties.image[0];
-          else if(typeof item.properties.image == 'object') item.properties.image = item.properties.image[0][0];
-          image = `<img src="`+img+`" align="top"/>`;
-        }
-      }
-       */
-      image = `<img width="160" src="`+item.properties.image+`" align="top"/>`;
-      console.log(item.properties.image);
       // Create an element to hold all your text and markup
       var container = jQuery('<div />');
 
@@ -146,7 +133,7 @@ export class Tab1Page {
       });
 
       // Insert whatever you want into the container, using whichever approach you prefer
-      container.html(`<div><b>`+item.properties.name+`</b><br/>`+description+image+`</div>`);
+      container.html(`<div><b>`+item.properties.name+`</b><br/>`+description+`</div>`);
       container.append(`<ion-button class="more-info-button" expand="full">More info</ion-button>`);
 
       // Insert the container into the popup
