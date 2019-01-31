@@ -83,12 +83,15 @@ export class Tab1Page {
     });
   }
 
+  ngOnInit() {
+    this.map = leaflet.map("map")
+  }
+
   ionViewDidEnter() {
     this.loadmap();
   }
 
   loadmap() {
-    this.map = leaflet.map("map")
     this.map.fitWorld().zoomIn();
 
     leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -160,11 +163,12 @@ export class Tab1Page {
       setView: false,
       maxZoom: 18
     }).on('locationfound', (e) => {
+      this.dataService.sortNearBy(e.latitude, e.longitude);
       this.selflayer = leaflet.featureGroup();
       this.map.addLayer(this.selflayer);
 
       if(this.myMarker) {
-        console.log("* Updating marker");
+        console.log("* Updating marker to: ", e.latitude, e.longitude);
         // Update marker position
         this.myMarker.setLatLng([e.latitude, e.longitude]);
         this.myMarker.setIcon(this.iconSelf);
