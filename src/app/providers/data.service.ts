@@ -10,6 +10,7 @@ import { filter } from 'rxjs/operators';
 const apiUrl = "https://use.fair-coin.org/wp-json/custom/v1/all-posts";
 //const apiUrl = "http://localhost:83/wp-json/custom/v1/all-posts";
 
+// Haversine formula to calculate distance roughly
 function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
   var R = 6371; // Radius of the earth in km
   var dLat = deg2rad(lat2-lat1);  // deg2rad below
@@ -34,6 +35,7 @@ function deg2rad(deg) {
 export class DataService {
   items$: Observable<any>;
   public responseCache = new Map();
+  geoposition: any; // FIXME maybe this should go somewhere else
 
   constructor(private http: HttpClient) {
   }
@@ -59,6 +61,27 @@ export class DataService {
     }
     return this.items$;
   }
+
+  sortNearBy(lat, lon) {
+    console.log("sortNearBy: ", lat, lon);
+    this.items$ =  this.items$.pipe(
+        map(res => {
+          console.log("going forEach");
+          res.forEach(element => {
+            element.geometry.distance = getDistanceFromLatLonInKm(element.geometry.coordinates[1], element.geometry.coordinates[0], lat,  lon).toFixed(2);
+          })
+          let nearby = res.sort(function(obj1, obj2) {
+            // Ascending: less distance first
+            return obj1.geometry.distance - obj2.geometry.distance;
+          });
+          console.log("response: ", nearby)
+          return nearby;
+        })
+    );
+    //near.subscribe(res => console.log(res));
+  }
+
+
 
   filterItems(searchTerm) {
     console.log("filterItems called");
