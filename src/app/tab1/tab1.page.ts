@@ -164,7 +164,7 @@ export class Tab1Page {
       this.map.addLayer(this.selflayer);
 
       if(this.myMarker) {
-        console.log("* Updating marker");
+        console.log("* Updating marker to: ", e.latitude, e.longitude);
         // Update marker position
         this.myMarker.setLatLng([e.latitude, e.longitude]);
         this.myMarker.setIcon(this.iconSelf);
