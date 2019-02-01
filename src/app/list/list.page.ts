@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 import { NavController } from '@ionic/angular';
 import { DataService } from '../providers/data.service';
@@ -16,15 +17,25 @@ export class ListPage implements OnInit {
   searchControl: FormControl;
   items$: any;
   searching: any = false;
-  constructor(public navCtrl: NavController, public dataService: DataService, public platform: Platform) {
+  constructor(public navCtrl: NavController, public dataService: DataService, public platform: Platform, private geolocation: Geolocation) {
     this.searchControl = new FormControl();
   }
 
   ngOnInit() {
+    // Get listing
     this.items$ = this.dataService.getGeoJSON();
     this.searchControl.valueChanges.pipe(debounceTime(300)).subscribe(search => {
       this.searching = false;
       this.setFilteredItems(search);
+    });
+
+    this.geolocation.getCurrentPosition().then((resp) => {
+      // resp.coords.latitude
+      // resp.coords.longitude
+      console.log("GotCurrentPosition: ", resp.coords.latitude, resp.coords.longitude)
+      this.dataService.sortNearBy(resp.coords.latitude, resp.coords.longitude)
+    }).catch((error) => {
+      console.log('Error getting location', error);
     });
 
   }

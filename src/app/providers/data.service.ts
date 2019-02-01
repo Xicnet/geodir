@@ -78,7 +78,7 @@ export class DataService {
           return nearby;
         })
     );
-    //near.subscribe(res => console.log(res));
+    this.items$.subscribe(res => console.log(res));
   }
 
 
