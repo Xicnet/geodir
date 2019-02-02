@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-
 import { NavController } from '@ionic/angular';
-import { DataService } from '../providers/data.service';
-import { debounceTime } from 'rxjs/operators';
+import { PopoverController } from '@ionic/angular';
 import { FormControl } from '@angular/forms';
+import { debounceTime } from 'rxjs/operators';
+
+import { PopoverPage } from './../popover/popover.page';
+import { DataService } from '../providers/data.service';
 
 @Component({
   selector: 'app-list',
@@ -17,7 +19,10 @@ export class ListPage implements OnInit {
   searchControl: FormControl;
   items$: any;
   searching: any = false;
-  constructor(public navCtrl: NavController, public dataService: DataService, public platform: Platform, private geolocation: Geolocation) {
+  constructor(public navCtrl: NavController, public dataService: DataService,
+    public platform: Platform, private geolocation: Geolocation,
+    private popoverController: PopoverController
+  ) {
     this.searchControl = new FormControl();
   }
 
@@ -58,4 +63,15 @@ export class ListPage implements OnInit {
     }
   }
 
+  async openPopover(data) {
+    const popover = await this.popoverController.create({
+      component: PopoverPage,
+      //event: ev,
+      componentProps: {
+        item: data
+      },
+      cssClass: 'custom-popover'
+    });
+    await popover.present();
+  }
 }
