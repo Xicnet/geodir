@@ -33,7 +33,7 @@
           </ion-thumbnail>
           <ion-col size="10">
             <ion-card-title [innerHTML]="item.properties.name"></ion-card-title>
-            <ion-card-subtitle><ion-text color="primary">~{{item.geometry.distance}} km</ion-text> {{item.properties.address}}</ion-card-subtitle>
+            <ion-card-subtitle><ion-text *ngIf="item.geometry.distance" color="primary">~{{item.geometry.distance}} km</ion-text> {{item.properties.address}}</ion-card-subtitle>
             <ion-card-content no-padding [innerHTML]="(item.properties.description.length>200)? (item.properties.description | slice:0:200)+'..':(item.properties.description)">
             </ion-card-content>
           </ion-col>
@@ -44,6 +44,7 @@
               <a button href="tel:555-555-5555" target="_system"><ion-icon name="call" *ngIf="item.properties.phone"></ion-icon></a>
               <a href="{{item.properties.website}}" target="_blank"><ion-icon name="globe" *ngIf="item.properties.website"></ion-icon></a>
               <a href="https://twitter.com/{{item.properties.twitter}}" target="_blank"><ion-icon name="logo-twitter" *ngIf="item.properties.twitter"></ion-icon></a>
+              Updated on {{ item.properties.updated }}
             </ion-card-content>
           </ion-col>
         </ion-row>
