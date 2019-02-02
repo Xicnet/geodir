@@ -44,7 +44,7 @@
               <a button href="tel:555-555-5555" target="_system"><ion-icon name="call" *ngIf="item.properties.phone"></ion-icon></a>
               <a href="{{item.properties.website}}" target="_blank"><ion-icon name="globe" *ngIf="item.properties.website"></ion-icon></a>
               <a href="https://twitter.com/{{item.properties.twitter}}" target="_blank"><ion-icon name="logo-twitter" *ngIf="item.properties.twitter"></ion-icon></a>
-              Updated on {{ item.properties.updated }}
+              <span *ngIf="item.properties.hours">{{item.properties.hours}}</span> <span> (updated on {{ item.properties.updated }})</span>
             </ion-card-content>
           </ion-col>
         </ion-row>
