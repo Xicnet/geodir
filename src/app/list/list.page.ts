@@ -30,9 +30,6 @@ export class ListPage implements OnInit {
     });
 
     this.geolocation.getCurrentPosition().then((resp) => {
-      // resp.coords.latitude
-      // resp.coords.longitude
-      console.log("GotCurrentPosition: ", resp.coords.latitude, resp.coords.longitude)
       this.dataService.sortNearBy(resp.coords.latitude, resp.coords.longitude)
     }).catch((error) => {
       console.log('Error getting location', error);

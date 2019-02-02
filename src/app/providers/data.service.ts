@@ -45,19 +45,8 @@ export class DataService {
       this.items$ = this.http.get<any>(apiUrl)
         .pipe(shareReplay(1),
           //.pipe(refCount());
-          map(res => {
-            res.response.forEach(element => {
-              element.geometry.distance = getDistanceFromLatLonInKm(element.geometry.coordinates[1], element.geometry.coordinates[0], 0.0,  0.0).toFixed(2);
-            })
-            let nearby = res.response.sort(function(obj1, obj2) {
-              // Ascending: less distance first
-              return obj1.geometry.distance - obj2.geometry.distance;
-            });
-            console.log("response: ", nearby)
-            return nearby;
-          })
+          map(res => res.response)
         );
-
     }
     return this.items$;
   }
@@ -66,7 +55,6 @@ export class DataService {
     console.log("sortNearBy: ", lat, lon);
     this.items$ =  this.items$.pipe(
         map(res => {
-          console.log("going forEach");
           res.forEach(element => {
             element.geometry.distance = getDistanceFromLatLonInKm(element.geometry.coordinates[1], element.geometry.coordinates[0], lat,  lon).toFixed(2);
           })
@@ -74,11 +62,10 @@ export class DataService {
             // Ascending: less distance first
             return obj1.geometry.distance - obj2.geometry.distance;
           });
-          console.log("response: ", nearby)
           return nearby;
         })
     );
-    this.items$.subscribe(res => console.log(res));
+    this.items$.subscribe(res => console.log("Sorted by distance: ", res));
   }
 
 
