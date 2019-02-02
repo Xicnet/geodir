@@ -193,7 +193,8 @@ export class Tab1Page {
       //event: ev,
       componentProps: {
         data: data
-      }
+      },
+      cssClass: 'custom-popover'
     });
     await popover.present();
   }

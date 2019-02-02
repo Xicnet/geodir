@@ -93,11 +93,18 @@ ion-popover{
   ion-backdrop{
     opacity: 0.5 !important;
   }
-  .popover-wrapper{
-    .popover-content{
-      width:auto;
-    }
-  }
+  //.popover-wrapper{
+  //  .popover-content{
+  //    width:auto;
+  //  }
+  //}
+}
+
+.custom-popover .popover-content {
+  width: 80%;
+  top: 70px;
+  left: 30px;
+  bottom: 70px
 }
 
 div.scrollable {
