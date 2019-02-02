@@ -35,7 +35,7 @@ function deg2rad(deg) {
 export class DataService {
   items$: Observable<any>;
   public responseCache = new Map();
-  geoposition: any; // FIXME maybe this should go somewhere else
+  searching: boolean;
 
   constructor(private http: HttpClient) {
   }
@@ -51,21 +51,21 @@ export class DataService {
     return this.items$;
   }
 
-  sortNearBy(lat, lon) {
+  sortNearBy(lat, lon): Observable<any> {
     console.log("sortNearBy: ", lat, lon);
-    this.items$ =  this.items$.pipe(
-        map(res => {
-          res.forEach(element => {
-            element.geometry.distance = getDistanceFromLatLonInKm(element.geometry.coordinates[1], element.geometry.coordinates[0], lat,  lon).toFixed(2);
-          })
-          let nearby = res.sort(function(obj1, obj2) {
-            // Ascending: less distance first
-            return obj1.geometry.distance - obj2.geometry.distance;
-          });
-          return nearby;
+    this.searching = true;
+    return this.items$.pipe(
+      map(res => {
+        res.forEach(element => {
+          element.geometry.distance = getDistanceFromLatLonInKm(element.geometry.coordinates[1], element.geometry.coordinates[0], lat,  lon).toFixed(2);
         })
+        let nearby = res.sort(function(obj1, obj2) {
+          // Ascending: less distance first
+          return obj1.geometry.distance - obj2.geometry.distance;
+        });
+        return of(false); // done searching
+      })
     );
-    this.items$.subscribe(res => console.log("Sorted by distance: ", res));
   }
 
 

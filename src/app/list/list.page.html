@@ -5,12 +5,13 @@
 </ion-header>
 <ion-content text-center padding>
   <ion-list-header color="tertiary">
-    <h1>Listings</h1>
+    <h1>Listings
+      <span *ngIf="searching" class="spinner-container">
+        <ion-spinner></ion-spinner>
+      </span>
+    </h1>
   </ion-list-header>
 
-  <div *ngIf="searching" class="spinner-container">
-    <ion-spinner></ion-spinner>
-  </div>
 
   <ion-virtual-scroll [items]="items$ | async">
     <ion-item *virtualItem="let item">
