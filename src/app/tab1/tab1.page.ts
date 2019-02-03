@@ -1,4 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Platform } from '@ionic/angular';
 import { PopoverController } from '@ionic/angular';
 import { latLng, tileLayer } from 'leaflet';
 import { HttpClient } from '@angular/common/http';
@@ -59,6 +60,7 @@ export class Tab1Page {
 
   constructor(public http: HttpClient,
     private popoverController: PopoverController,
+    public platform: Platform,
     public dataService: DataService
   ) {
     this.iconUfcSpot = leaflet.icon({
@@ -187,12 +189,22 @@ export class Tab1Page {
 
   }
 
+  openNavigator(e, coordinates) {
+    let coords = coordinates;
+    //let coords = coordinates[1]+','+coordinates[0]
+    if(this.platform.is('cordova')) {
+      window.open('geo:?q='+coords, '_blank');
+    } else {
+      window.open('https://www.google.com/maps/search/?api=1&query='+coords, '_blank');
+    }
+  }
+
   async openPopover(data) {
     const popover = await this.popoverController.create({
       component: PopoverPage,
       //event: ev,
       componentProps: {
-        data: data
+        item: data
       },
       cssClass: 'custom-popover'
     });

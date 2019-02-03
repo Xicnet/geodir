@@ -20,7 +20,8 @@ export class ListPage implements OnInit {
   items$: any;
   searching: any = false;
   constructor(public navCtrl: NavController, public dataService: DataService,
-    public platform: Platform, private geolocation: Geolocation,
+    public platform: Platform,
+    private geolocation: Geolocation,
     private popoverController: PopoverController
   ) {
     this.searchControl = new FormControl();

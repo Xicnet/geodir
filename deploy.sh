@@ -1,0 +1,2 @@
+ionic cordova build browser --prod --release \
+&& ssh ufca rm -r html/ufca ; rsync -varzu --progress platforms/browser/www/ ufca:html/ufca
