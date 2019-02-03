@@ -1,18 +1,20 @@
 <ion-header>
   <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-title text-left>
+          <img src="/assets/imgs/icon.png" alt="Use Faircoin" width="30px" >
+        </ion-title>
+          <ion-col padding-horizontal>
+            <ion-text  padding-bottom text-right color="primary"><h4>FairCoin Locations</h4></ion-text>
+          </ion-col>
+      </ion-row>
+    </ion-grid>
     <ion-searchbar [formControl]="searchControl" (ionInput)="onSearchInput()"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
+
 <ion-content text-center padding>
-  <ion-list-header color="tertiary">
-    <h1>Listings
-      <span *ngIf="searching" class="spinner-container">
-        <ion-spinner></ion-spinner>
-      </span>
-    </h1>
-  </ion-list-header>
-
-
   <ion-virtual-scroll [items]="items$ | async">
     <ion-item *virtualItem="let item">
       <ion-card>

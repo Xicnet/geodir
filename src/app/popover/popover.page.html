@@ -23,7 +23,6 @@
             <ion-img [src]="item.properties.image || 'assets/imgs/default.png'" alt="Use Faircoin"></ion-img>
           </ion-thumbnail>
           <ion-col size="10">
-            <ion-card-title [innerHTML]="item.properties.name"></ion-card-title>
             <ion-card-subtitle><ion-text *ngIf="item.geometry.distance" color="primary">~{{item.geometry.distance}} km</ion-text> {{item.properties.address}}</ion-card-subtitle>
             <ion-card-content no-padding [innerHTML]="item.properties.description"></ion-card-content>
           </ion-col>
