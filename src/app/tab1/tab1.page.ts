@@ -105,6 +105,7 @@ export class Tab1Page {
 
     this.dataService.getGeoJSON().subscribe(res => {
       this.updateMarkers(res);
+      console.log("locations: ", res);
     });
   }
 
