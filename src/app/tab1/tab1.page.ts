@@ -1,30 +1,16 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { PopoverController } from '@ionic/angular';
-import { latLng, tileLayer } from 'leaflet';
 import { HttpClient } from '@angular/common/http';
-//import { map } from 'rxjs/operators';
 import leaflet from 'leaflet';
 import { PopoverPage } from './../popover/popover.page';
 import { DataService } from '../providers/data.service';
 import { map } from 'rxjs/operators';
 
-declare let L;
 import 'leaflet';
 import 'leaflet.markercluster';
 declare var jQuery: any;
 
-
-
-function hexToRGBA(hex,opacity){
-  hex = hex.replace('#','');
-  var r = parseInt(hex.substring(0,2), 16);
-  var g = parseInt(hex.substring(2,4), 16);
-  var b = parseInt(hex.substring(4,6), 16);
-
-  var result = 'rgba('+r+','+g+','+b+','+opacity+')';
-  return result;
-}
 
 var text_truncate = function(str, length, ending) {
   if (length == null) {
@@ -119,9 +105,9 @@ export class Tab1Page {
       var icon = leaflet.divIcon({
         className: 'markerInvisible',
         popupAnchor:  [10, 0], // point from which the popup should open relative to the iconAnchor
-        html: `<img style='width:30px;height:30px;border: 2px solid `+item.properties.icon_marker_color+`;
-        box-shadow: 0 0 5px 4px ` + hexToRGBA(item.properties.icon_marker_color, 0.2) + `
-          ;' class='marker' src='statics/img/categories/` + item.properties.icon_name + `_black.svg' />`
+        //html: `<img style='width:30px;height:30px;border: 2px solid `+item.properties.icon_marker_color+`;
+        //box-shadow: 0 0 5px 4px ` + hexToRGBA(item.properties.icon_marker_color, 0.2) + `
+        //  ;' class='marker' src='statics/img/categories/` + item.properties.icon_name + `_black.svg' />`
         // html: "<img style='width:30px;height:30px;border: 2px solid " + hexToRGBA(item.properties.icon_marker_color, 0.2) + ";' class='marker marker-" + item.properties.icon_marker_color + "' src='statics/img/categories/" + item.properties.icon_name + "_black.svg' />"
       });
       marker[item.properties.id] = leaflet.marker([lat, lon], {icon: this.iconUfcSpot});
