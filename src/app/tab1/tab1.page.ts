@@ -1,18 +1,19 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { Platform } from '@ionic/angular';
+import { ActivatedRoute, ParamMap, Router, NavigationEnd } from '@angular/router';
 import { PopoverController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
 import leaflet from 'leaflet';
 import { PopoverPage } from './../popover/popover.page';
 import { DataService } from '../providers/data.service';
-import { map } from 'rxjs/operators';
+import { map, switchMap, filter } from 'rxjs/operators';
 
 import 'leaflet';
 import 'leaflet.markercluster';
 declare var jQuery: any;
 
 
-var text_truncate = function(str, length, ending) {
+var text_truncate = function (str, length, ending) {
   if (length == null) {
     length = 100;
   }
@@ -42,12 +43,18 @@ export class Tab1Page {
   locations: any;
   selflayer: any;
   layers: any;
+  lat: any;
   items$: any;
+  coords: any;
+  sub: any;
 
   constructor(public http: HttpClient,
     private popoverController: PopoverController,
     public platform: Platform,
-    public dataService: DataService
+    public dataService: DataService,
+    private route: ActivatedRoute,
+    private router: Router
+
   ) {
     this.iconUfcSpot = leaflet.icon({
       iconUrl: '/assets/imgs/ufcspot.png',
@@ -69,17 +76,36 @@ export class Tab1Page {
       iconSize: [38, 58],
       iconAnchor: [16, 58],
     });
+
+    
+    this.route.queryParams.subscribe(params => {
+      const coords = decodeURIComponent(params['coords']);
+      console.log(coords);
+  });
   }
 
   ngOnInit() {
     this.map = leaflet.map("map")
+    
+  
+           
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
   ionViewDidEnter() {
+    console.log("did enter");
     this.loadmap();
+    
   }
 
+
+
   loadmap() {
+    console.log("loadmap params: ", this.coords);
+    //this.coords.subscribe(res => console.log("COORDS RES: ", res));
     this.map.fitWorld().zoomIn();
 
     leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -91,7 +117,7 @@ export class Tab1Page {
 
     this.dataService.getGeoJSON().subscribe(res => {
       this.updateMarkers(res);
-      console.log("locations: ", res);
+      //console.log("locations: ", res);
     });
   }
 
@@ -104,16 +130,16 @@ export class Tab1Page {
       var img = '';
       var icon = leaflet.divIcon({
         className: 'markerInvisible',
-        popupAnchor:  [10, 0], // point from which the popup should open relative to the iconAnchor
+        popupAnchor: [10, 0], // point from which the popup should open relative to the iconAnchor
         //html: `<img style='width:30px;height:30px;border: 2px solid `+item.properties.icon_marker_color+`;
         //box-shadow: 0 0 5px 4px ` + hexToRGBA(item.properties.icon_marker_color, 0.2) + `
         //  ;' class='marker' src='statics/img/categories/` + item.properties.icon_name + `_black.svg' />`
         // html: "<img style='width:30px;height:30px;border: 2px solid " + hexToRGBA(item.properties.icon_marker_color, 0.2) + ";' class='marker marker-" + item.properties.icon_marker_color + "' src='statics/img/categories/" + item.properties.icon_name + "_black.svg' />"
       });
-      marker[item.properties.id] = leaflet.marker([lat, lon], {icon: this.iconUfcSpot});
+      marker[item.properties.id] = leaflet.marker([lat, lon], { icon: this.iconUfcSpot });
 
-      if(item.properties.description!=null) {
-        description = `<div>`+text_truncate(item.properties.description, 200, "...")+`</div>`;
+      if (item.properties.description != null) {
+        description = `<div>` + text_truncate(item.properties.description, 200, "...") + `</div>`;
       }
 
       // Create an element to hold all your text and markup
@@ -125,19 +151,19 @@ export class Tab1Page {
       });
 
       // Insert whatever you want into the container, using whichever approach you prefer
-      container.html(`<div><b>`+item.properties.name+`</b><br/>`+description+`</div>`);
+      container.html(`<div><b>` + item.properties.name + `</b><br/>` + description + `</div>`);
       container.append(`<ion-button class="more-info-button" expand="full">More info</ion-button>`);
 
       // Insert the container into the popup
       marker[item.properties.id].bindPopup(container[0]);
 
-      marker[item.properties.id].on('mouseover', function(e) {
+      marker[item.properties.id].on('mouseover', function (e) {
         //this.openPopup();
       });
-      marker[item.properties.id].on('mouseout', function(e) {
+      marker[item.properties.id].on('mouseout', function (e) {
         //this.closePopup();
       });
-      marker[item.properties.id].on('click', function(e) {
+      marker[item.properties.id].on('click', function (e) {
         // show popup?
         this.openPopup();
       });
@@ -156,15 +182,15 @@ export class Tab1Page {
       this.selflayer = leaflet.featureGroup();
       this.map.addLayer(this.selflayer);
 
-      if(this.myMarker) {
-        console.log("* Updating marker to: ", e.latitude, e.longitude);
+      if (this.myMarker) {
+        //console.log("* Updating marker to: ", e.latitude, e.longitude);
         // Update marker position
         this.myMarker.setLatLng([e.latitude, e.longitude]);
         this.myMarker.setIcon(this.iconSelf);
       } else {
         this.map.setView([e.latitude, e.longitude], 5);
         // Create marker
-        this.myMarker = leaflet.marker([e.latitude, e.longitude], {icon: this.iconSelf}).on('click', function(e) {
+        this.myMarker = leaflet.marker([e.latitude, e.longitude], { icon: this.iconSelf }).on('click', function (e) {
           this.openPopup();
         });
         this.myMarker.setZIndexOffset(1);
@@ -179,10 +205,10 @@ export class Tab1Page {
   openNavigator(e, coordinates) {
     let coords = coordinates;
     //let coords = coordinates[1]+','+coordinates[0]
-    if(this.platform.is('cordova')) {
-      window.open('geo:?q='+coords, '_blank');
+    if (this.platform.is('cordova')) {
+      window.open('geo:?q=' + coords, '_blank');
     } else {
-      window.open('https://www.google.com/maps/search/?api=1&query='+coords, '_blank');
+      window.open('https://www.google.com/maps/search/?api=1&query=' + coords, '_blank');
     }
   }
 

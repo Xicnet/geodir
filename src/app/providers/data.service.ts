@@ -52,7 +52,7 @@ export class DataService {
   }
 
   sortNearBy(lat, lon): Observable<any> {
-    console.log("sortNearBy: ", lat, lon);
+    //console.log("sortNearBy: ", lat, lon);
     this.searching = true;
     return this.items$.pipe(
       map(res => {

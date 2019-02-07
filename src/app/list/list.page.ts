@@ -19,6 +19,7 @@ export class ListPage implements OnInit {
   searchControl: FormControl;
   items$: any;
   searching: any = false;
+
   constructor(public navCtrl: NavController, public dataService: DataService,
     public platform: Platform,
     private geolocation: Geolocation,
@@ -74,5 +75,14 @@ export class ListPage implements OnInit {
       cssClass: 'custom-popover'
     });
     await popover.present();
+  }
+
+  
+  geoZoom(coords) {
+    ///console.log("coords: ", coords);
+    //this.navCtrl.navigate(`/tabs/map?coords=${coords}`, {});
+    this.navCtrl.navigate(["/tabs/map"], {queryParams: {coords: coords}});
+    
+
   }
 }

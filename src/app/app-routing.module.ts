@@ -6,7 +6,13 @@ const routes: Routes = [
   { path: 'popover', loadChildren: './popover/popover.module#PopoverPageModule' }
 ];
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot( 
+      routes,
+      { useHash: false, enableTracing: false }
+    ), 
+
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}
