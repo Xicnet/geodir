@@ -19,7 +19,7 @@
     <ion-item *virtualItem="let item">
       <ion-card>
         <ion-item class="activated" >
-          <ion-icon (click)="openNavigator($event, item.properties.address)" name="pin" slot="start" color="primary"></ion-icon>
+          <ion-icon (click)="openNavigator($event, item.properties.address)" name="compass" slot="start" color="primary"></ion-icon>
           <ion-label>
             <ion-row>
               <ion-col>
@@ -43,7 +43,7 @@
         <ion-row>
           <ion-col size="12" nopadding>
             <ion-card-content no-padding class="card-footer-links">
-              <ion-icon (click)="geoZoom(item.geometry.coordinates)" name="pin" slot="start" color="primary"></ion-icon>
+              <ion-icon (click)="geoZoom(item.properties.id)" name="pin" slot="start" color="primary"></ion-icon>
               <a button href="tel:555-555-5555" target="_system"><ion-icon name="call" *ngIf="item.properties.phone"></ion-icon></a>
               <a href="{{item.properties.website}}" target="_blank"><ion-icon name="globe" *ngIf="item.properties.website"></ion-icon></a>
               <a href="https://twitter.com/{{item.properties.twitter}}" target="_blank"><ion-icon name="logo-twitter" *ngIf="item.properties.twitter"></ion-icon></a>

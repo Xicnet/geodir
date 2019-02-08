@@ -47,7 +47,9 @@ export class Tab1Page {
   lat: any;
   items$: any;
   coords: Observable<any>;
+  location: Observable<any>;
   private _routerSub = Subscription.EMPTY;
+  marker: any = [];
 
   constructor(public http: HttpClient,
     private popoverController: PopoverController,
@@ -84,6 +86,7 @@ export class Tab1Page {
       )
       .subscribe(event => {
         this.coords = event.snapshot.queryParams.coords;
+        this.location = event.snapshot.queryParams.location;
       });
   }
 
@@ -98,19 +101,15 @@ export class Tab1Page {
 
   ionViewDidEnter() {
     console.log("did enter");
-    console.log("this.coords: ", this.coords);
+    console.log("this.coords: ", this.coords, " location: ", this.location);
     this.loadmap();
-      }
+  }
 
   ionViewDidLeave() {
     console.log("did leave");
   }
 
-
   loadmap() {
-    //this.coords.subscribe(res => console.log("COORDS RES: ", res));
-    
-
     leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attributions: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
       maxZoom: 18
@@ -120,8 +119,7 @@ export class Tab1Page {
 
     this.dataService.getGeoJSON().subscribe(res => {
       this.updateMarkers(res);
-      //console.log("locations: ", res);
-      this.centerOnMarker(this.coords);
+      this.centerOnMarker(this.location);
     });
   }
 
@@ -140,7 +138,7 @@ export class Tab1Page {
         //  ;' class='marker' src='statics/img/categories/` + item.properties.icon_name + `_black.svg' />`
         // html: "<img style='width:30px;height:30px;border: 2px solid " + hexToRGBA(item.properties.icon_marker_color, 0.2) + ";' class='marker marker-" + item.properties.icon_marker_color + "' src='statics/img/categories/" + item.properties.icon_name + "_black.svg' />"
       });
-      marker[item.properties.id] = leaflet.marker([lat, lon], { icon: this.iconUfcSpot });
+      this.marker[item.properties.id] = leaflet.marker([lat, lon], { icon: this.iconUfcSpot });
 
       if (item.properties.description != null) {
         description = `<div>` + text_truncate(item.properties.description, 200, "...") + `</div>`;
@@ -159,19 +157,19 @@ export class Tab1Page {
       container.append(`<ion-button class="more-info-button" expand="full">More info</ion-button>`);
 
       // Insert the container into the popup
-      marker[item.properties.id].bindPopup(container[0]);
+      this.marker[item.properties.id].bindPopup(container[0]);
 
-      marker[item.properties.id].on('mouseover', function (e) {
+      this.marker[item.properties.id].on('mouseover', function (e) {
         //this.openPopup();
       });
-      marker[item.properties.id].on('mouseout', function (e) {
+      this.marker[item.properties.id].on('mouseout', function (e) {
         //this.closePopup();
       });
-      marker[item.properties.id].on('click', function (e) {
+      this.marker[item.properties.id].on('click', function (e) {
         // show popup?
         this.openPopup();
       });
-      marker[item.properties.id].addTo(this.locations);
+      this.marker[item.properties.id].addTo(this.locations);
     });
     this.map.addLayer(this.locations);
   }
@@ -187,19 +185,18 @@ export class Tab1Page {
       this.map.addLayer(this.selflayer);
 
       if (this.myMarker) {
-        //console.log("* Updating marker to: ", e.latitude, e.longitude);
         // Update marker position
         this.myMarker.setLatLng([e.latitude, e.longitude]);
         this.myMarker.setIcon(this.iconSelf);
       } else {
         this.map.setView([e.latitude, e.longitude], 5);
         // Create marker
-        this.myMarker = leaflet.marker([e.latitude, e.longitude], { icon: this.iconSelf }).on('click', function (e) {
-          this.openPopup();
-        });
+        this.myMarker = leaflet.marker([e.latitude, e.longitude], { icon: this.iconSelf });
         this.myMarker.setZIndexOffset(1);
+
       }
       this.selflayer.addLayer(this.myMarker);
+      //this.myMarker.bindPopup("you are here").openPopup(leaflet.latLng([e.latitude, e.longitude]));
     }).on('locationerror', (err) => {
       console.log("ERROR: ", err.message);
     })
@@ -228,14 +225,14 @@ export class Tab1Page {
     await popover.present();
   }
 
-  centerOnMarker(coords) {
-    if(!coords) return;
-    console.log("centering on coords: ", coords);
-    let lat = coords.split(",")[1];
-    let lon = coords.split(",")[0];
-    
-    let markerCoords = leaflet.latLng([lat, lon]);
-    this.map.flyTo(markerCoords, 10);
+  centerOnMarker(location) {
+    if (!location) return;
+
+    let marker = this.marker[location];
+
+    //this.map.flyTo(marker._latlng, 18);
+    this.map.setView(marker._latlng, 18);
+    marker.openPopup(leaflet.latLng(marker._latlng));
 
   }
 }
