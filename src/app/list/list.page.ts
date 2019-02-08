@@ -80,8 +80,8 @@ export class ListPage implements OnInit {
   
   geoZoom(coords) {
     ///console.log("coords: ", coords);
-    //this.navCtrl.navigate(`/tabs/map?coords=${coords}`, {});
-    this.navCtrl.navigate(["/tabs/map"], {queryParams: {coords: coords}});
+    this.navCtrl.navigate(`/tabs/map?coords=${coords}`, {});
+    //this.navCtrl.navigate(["/tabs/map"], {queryParams: {coords: coords}});
     
 
   }

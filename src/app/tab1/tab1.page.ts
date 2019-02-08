@@ -80,29 +80,28 @@ export class Tab1Page {
 
     this._routerSub = this.router.events
       .pipe(
-        filter((event: ActivationEnd) => event instanceof ActivationEnd)    
+        filter((event: ActivationEnd) => event instanceof ActivationEnd)
       )
       .subscribe(event => {
         this.coords = event.snapshot.queryParams.coords;
       });
-
-
   }
 
   ngOnInit() {
     this.map = leaflet.map("map")
+    //this.map.fitWorld().zoomIn();
   }
 
   ngOnDestroy() {
     this._routerSub.unsubscribe();
-    console.log("destroyed");
   }
 
   ionViewDidEnter() {
     console.log("did enter");
     console.log("this.coords: ", this.coords);
     this.loadmap();
-  }
+      }
+
   ionViewDidLeave() {
     console.log("did leave");
   }
@@ -110,7 +109,7 @@ export class Tab1Page {
 
   loadmap() {
     //this.coords.subscribe(res => console.log("COORDS RES: ", res));
-    this.map.fitWorld().zoomIn();
+    
 
     leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attributions: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
@@ -122,6 +121,7 @@ export class Tab1Page {
     this.dataService.getGeoJSON().subscribe(res => {
       this.updateMarkers(res);
       //console.log("locations: ", res);
+      this.centerOnMarker(this.coords);
     });
   }
 
@@ -226,5 +226,16 @@ export class Tab1Page {
       cssClass: 'custom-popover'
     });
     await popover.present();
+  }
+
+  centerOnMarker(coords) {
+    if(!coords) return;
+    console.log("centering on coords: ", coords);
+    let lat = coords.split(",")[1];
+    let lon = coords.split(",")[0];
+    
+    let markerCoords = leaflet.latLng([lat, lon]);
+    this.map.flyTo(markerCoords, 10);
+
   }
 }
