@@ -6,11 +6,11 @@ import { HttpClient } from '@angular/common/http';
 import leaflet from 'leaflet';
 import { PopoverPage } from './../popover/popover.page';
 import { DataService } from '../providers/data.service';
-import { map, switchMap, filter } from 'rxjs/operators';
+import { filter } from 'rxjs/operators';
 
 import 'leaflet';
 import 'leaflet.markercluster';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 declare var jQuery: any;
 
 
@@ -47,7 +47,7 @@ export class Tab1Page {
   lat: any;
   items$: any;
   coords: Observable<any>;
-  sub: any;
+  private _routerSub = Subscription.EMPTY;
 
   constructor(public http: HttpClient,
     private popoverController: PopoverController,
@@ -78,33 +78,29 @@ export class Tab1Page {
       iconAnchor: [16, 58],
     });
 
-    router.events
+    this._routerSub = this.router.events
       .pipe(
-        filter(
-          (event: ActivationEnd) => {
-            return (event instanceof ActivationEnd);
-          }
-        )
+        filter((event: ActivationEnd) => event instanceof ActivationEnd)    
       )
-      .subscribe((event: ActivationEnd) => {
-          console.log("EVENT QUERY PARAMS COORD:", event.snapshot.queryParams.coords);
-        }
-      )
-      ;
+      .subscribe(event => {
+        this.coords = event.snapshot.queryParams.coords;
+      });
+
+
   }
 
   ngOnInit() {
     this.map = leaflet.map("map")
-    //console.log("this.coords: ", this.coords);
   }
 
   ngOnDestroy() {
-    this.sub.unsubscribe();
+    this._routerSub.unsubscribe();
     console.log("destroyed");
   }
 
   ionViewDidEnter() {
     console.log("did enter");
+    console.log("this.coords: ", this.coords);
     this.loadmap();
   }
   ionViewDidLeave() {
