@@ -55,7 +55,6 @@ export class Tab1Page {
     private popoverController: PopoverController,
     public platform: Platform,
     public dataService: DataService,
-    private route: ActivatedRoute,
     private router: Router
 
   ) {
@@ -92,7 +91,6 @@ export class Tab1Page {
 
   ngOnInit() {
     this.map = leaflet.map("map")
-    //this.map.fitWorld().zoomIn();
   }
 
   ngOnDestroy() {
@@ -114,6 +112,7 @@ export class Tab1Page {
       attributions: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
       maxZoom: 18
     }).addTo(this.map);
+    this.map.fitWorld().zoomIn();
     this.addMyMarker();
     this.locations = leaflet.markerClusterGroup();
 
