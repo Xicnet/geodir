@@ -155,7 +155,7 @@ export class Tab1Page {
 
       // Delegate all event handling for the container itself and its contents to the container
       container.on('click', '.more-info-button', () => {
-        this.showInfo(item);
+        this.openModal(item);
       });
 
       // Insert whatever you want into the container, using whichever approach you prefer
@@ -221,30 +221,7 @@ export class Tab1Page {
     }
   }
 
-  async showInfo(data) {
-    let isMobile = this.deviceService.isMobile();
-    if(isMobile) {
-      
-      this.openModal(data);
-    } else {
-      this.openModal(data);
-      // popover behaves strange
-      //this.openPopover(data);
-    }
-
-  }
-
-  async openPopover(data) {
-    const popover = await this.popoverController.create({
-      //component: PopoverPage,
-      component: ModalPagePage,
-      componentProps: {
-        item: data
-      },
-      cssClass: 'custom-popover'
-    });
-    await popover.present();
-  }
+  
   async openModal(data) {
     let cssClass = this.deviceService.isMobile() ? '' : 'modal-smaller';
     const modalPage = await this.modalCtrl.create({
