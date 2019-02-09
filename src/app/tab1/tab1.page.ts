@@ -101,8 +101,7 @@ export class Tab1Page {
   }
 
   ionViewDidEnter() {
-    console.log("did enter");
-    console.log("this.coords: ", this.coords, " location: ", this.location);
+    console.log("did enter this.coords: ", this.coords, " location: ", this.location);
     this.loadmap();
   }
 
@@ -158,7 +157,7 @@ export class Tab1Page {
 
       // Insert whatever you want into the container, using whichever approach you prefer
       container.html(`<div><b>` + item.properties.name + `</b><br/>` + description + `</div>`);
-      container.append(`<ion-button class="more-info-button" expand="full">More info</ion-button>`);
+      container.append(`<ion-button class="more-info-button" expand="full">+info</ion-button>`);
 
       // Insert the container into the popup
       this.marker[item.properties.id].bindPopup(container[0]);
