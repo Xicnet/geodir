@@ -2,9 +2,11 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { ActivatedRoute, ParamMap, Router, NavigationEnd, NavigationStart, ActivationEnd } from '@angular/router';
 import { PopoverController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
 import leaflet from 'leaflet';
 import { PopoverPage } from './../popover/popover.page';
+import { ModalPagePage } from './../modal-page/modal-page.page';
 import { DataService } from '../providers/data.service';
 import { filter } from 'rxjs/operators';
 
@@ -53,6 +55,7 @@ export class Tab1Page {
 
   constructor(public http: HttpClient,
     private popoverController: PopoverController,
+    public modalCtrl : ModalController,
     public platform: Platform,
     public dataService: DataService,
     private router: Router
@@ -226,6 +229,13 @@ export class Tab1Page {
       cssClass: 'custom-popover'
     });
     await popover.present();
+  }
+
+  async openModal(){
+    const modalPage = await this.modalCtrl.create({
+      component: ModalPagePage
+    });    
+    await modalPage.present();
   }
 
   centerOnMarker(location) {

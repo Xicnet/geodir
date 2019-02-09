@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Platform } from '@ionic/angular';
+import { Platform, ModalController } from '@ionic/angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NavController } from '@ionic/angular';
 import { PopoverController } from '@ionic/angular';
@@ -7,6 +7,8 @@ import { FormControl } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
 
 import { PopoverPage } from './../popover/popover.page';
+import { ModalPagePage } from './../modal-page/modal-page.page';
+
 import { DataService } from '../providers/data.service';
 
 @Component({
@@ -23,7 +25,8 @@ export class ListPage implements OnInit {
   constructor(public navCtrl: NavController, public dataService: DataService,
     public platform: Platform,
     private geolocation: Geolocation,
-    private popoverController: PopoverController
+    private popoverController: PopoverController,
+    public modalCtrl : ModalController,
   ) {
     this.searchControl = new FormControl();
   }
@@ -77,6 +80,12 @@ export class ListPage implements OnInit {
     await popover.present();
   }
 
+  async openModal(){
+    const modalPage = await this.modalCtrl.create({
+      component: ModalPagePage
+    });    
+    await modalPage.present();
+  }
   
   geoZoom(location) {
     //console.log("coords: ", coords);
