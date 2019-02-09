@@ -14,6 +14,7 @@ import { HttpClient } from '@angular/common/http';
 import { ApolloModule, Apollo, APOLLO_OPTIONS } from 'apollo-angular';
 import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
+import { DeviceDetectorModule } from 'ngx-device-detector';
 
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 
@@ -40,9 +41,10 @@ export function createApollo(httpLink: HttpLink) {
     ApolloModule,
     HttpLinkModule,
     IonicModule.forRoot(),
+    DeviceDetectorModule.forRoot(),
     AppRoutingModule,
     PopoverPageModule,
-    ModalPagePageModule
+    ModalPagePageModule,
   ],
   providers: [
     {

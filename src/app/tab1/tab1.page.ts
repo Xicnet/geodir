@@ -5,6 +5,8 @@ import { PopoverController } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
 import leaflet from 'leaflet';
+import { DeviceDetectorService } from 'ngx-device-detector';
+
 import { PopoverPage } from './../popover/popover.page';
 import { ModalPagePage } from './../modal-page/modal-page.page';
 import { DataService } from '../providers/data.service';
@@ -58,7 +60,8 @@ export class Tab1Page {
     public modalCtrl : ModalController,
     public platform: Platform,
     public dataService: DataService,
-    private router: Router
+    private router: Router,
+    private deviceService: DeviceDetectorService
 
   ) {
     this.iconUfcSpot = leaflet.icon({
@@ -152,7 +155,7 @@ export class Tab1Page {
 
       // Delegate all event handling for the container itself and its contents to the container
       container.on('click', '.more-info-button', () => {
-        this.openPopover(item);
+        this.showInfo(item);
       });
 
       // Insert whatever you want into the container, using whichever approach you prefer
@@ -218,10 +221,23 @@ export class Tab1Page {
     }
   }
 
+  async showInfo(data) {
+    let isMobile = this.deviceService.isMobile();
+    if(isMobile) {
+      
+      this.openModal(data);
+    } else {
+      this.openModal(data);
+      // popover behaves strange
+      //this.openPopover(data);
+    }
+
+  }
+
   async openPopover(data) {
     const popover = await this.popoverController.create({
-      component: PopoverPage,
-      //event: ev,
+      //component: PopoverPage,
+      component: ModalPagePage,
       componentProps: {
         item: data
       },
@@ -229,11 +245,15 @@ export class Tab1Page {
     });
     await popover.present();
   }
-
-  async openModal(){
+  async openModal(data) {
+    let cssClass = this.deviceService.isMobile() ? '' : 'modal-smaller';
     const modalPage = await this.modalCtrl.create({
-      component: ModalPagePage
-    });    
+      component: ModalPagePage,
+      componentProps: {
+        item: data
+      },
+      cssClass: cssClass
+    });
     await modalPage.present();
   }
 
