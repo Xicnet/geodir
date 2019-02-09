@@ -26,7 +26,7 @@ export class ListPage implements OnInit {
     public platform: Platform,
     private geolocation: Geolocation,
     private popoverController: PopoverController,
-    public modalCtrl : ModalController,
+    public modalCtrl: ModalController,
   ) {
     this.searchControl = new FormControl();
   }
@@ -54,17 +54,17 @@ export class ListPage implements OnInit {
     console.log(this.items$.subscribe());
   }
 
-  onSearchInput(){
+  onSearchInput() {
     this.searching = true;
   }
 
   openNavigator(e, coordinates) {
     let coords = coordinates;
     //let coords = coordinates[1]+','+coordinates[0]
-    if(this.platform.is('cordova')) {
-      window.open('geo:?q='+coords, '_blank');
+    if (this.platform.is('cordova')) {
+      window.open('geo:?q=' + coords, '_blank');
     } else {
-      window.open('https://www.google.com/maps/search/?api=1&query='+coords, '_blank');
+      window.open('https://www.google.com/maps/search/?api=1&query=' + coords, '_blank');
     }
   }
 
@@ -80,18 +80,21 @@ export class ListPage implements OnInit {
     await popover.present();
   }
 
-  async openModal(){
+  async openModal(data) {
     const modalPage = await this.modalCtrl.create({
-      component: ModalPagePage
-    });    
+      component: ModalPagePage,
+      componentProps: {
+        item: data
+      },
+    });
     await modalPage.present();
   }
-  
+
   geoZoom(location) {
     //console.log("coords: ", coords);
     this.navCtrl.navigate(`/tabs/map?location=${location}`, {});
     //this.navCtrl.navigate(["/tabs/map"], {queryParams: {coords: coords}});
-    
+
 
   }
 }

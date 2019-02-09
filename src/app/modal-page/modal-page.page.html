@@ -1,9 +1,91 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>ModalPage</ion-title>
+  <ion-toolbar (click)="closeModal()">
+    <ion-title style="float: left; vertical-align: center" [innerHTML]="item.properties.name">
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
+  <ion-card>
+    <ion-img (click)="closeModal()" [src]="item.properties.image || 'assets/imgs/default.png'" alt="Use Faircoin"></ion-img>
 
+    <ion-item>
+      <ion-col size="10" padding>
+        <ion-card-subtitle>
+          <ion-text *ngIf="item.geometry.distance" color="primary">~{{item.geometry.distance}} km</ion-text>
+          {{item.properties.address}}
+        </ion-card-subtitle>
+        <ion-card-title>
+          {{item.properties.name}}
+        </ion-card-title>
+        <br />
+        <ion-card-content no-padding [innerHTML]="item.properties.description"></ion-card-content>
+      </ion-col>
+    </ion-item>
+
+    <ion-item *ngIf="item.properties.address">
+      <ion-icon (click)="openNavigator($event, item.properties.address)" name="compass"></ion-icon>
+      <ion-row>
+        <ion-col>
+          <a button (click)="openNavigator($event, item.properties.address)">Directions</a>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+
+    <ion-item class="activated" *ngIf="item.properties.phone">
+      <ion-icon name="call"></ion-icon>
+      <ion-row>
+        <ion-col>
+          <a button href="tel:{{item.properties.phone}}" target="_system">{{item.properties.phone}}</a>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item *ngIf="item.properties.website">
+      <ion-icon name="globe"></ion-icon>
+      <ion-row>
+        <ion-col>
+          <a href="{{item.properties.website}}" target="_blank">
+            {{item.properties.website}}
+          </a>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item *ngIf="item.properties.twitter">
+      <ion-icon name="logo-twitter"></ion-icon>
+      <ion-row>
+        <ion-col>
+          <a href="https://twitter.com/{{item.properties.twitter}}" target="_blank">
+            {{item.properties.twitter}}
+          </a>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item *ngIf="item.properties.hours">
+      <ion-icon name="time"></ion-icon>
+      <ion-row>
+        <ion-col>
+          {{item.properties.hours}}
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item *ngIf="item.properties.faircoin_address">
+      <ion-icon name="heart"></ion-icon>
+      <ion-row>
+        <ion-col>
+          {{item.properties.faircoin_address}}
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item>
+      <div>updated on {{ item.properties.updated }}</div>
+    </ion-item>
+
+
+  </ion-card>
 </ion-content>
