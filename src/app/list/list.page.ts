@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Platform, ModalController } from '@ionic/angular';
+import { Platform } from '@ionic/angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NavController } from '@ionic/angular';
 import { FormControl } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
 
-import { ModalPagePage } from './../modal-page/modal-page.page';
 import { DataService } from '../providers/data.service';
+import { ModalService } from '../providers/modal/modal.service';
 
 @Component({
   selector: 'app-list',
@@ -22,7 +22,7 @@ export class ListPage implements OnInit {
   constructor(public navCtrl: NavController, public dataService: DataService,
     public platform: Platform,
     private geolocation: Geolocation,
-    public modalCtrl: ModalController,
+    public modal: ModalService,
   ) {
     this.searchControl = new FormControl();
   }
@@ -54,6 +54,10 @@ export class ListPage implements OnInit {
     this.searching = true;
   }
 
+  openModal(data) {
+    this.modal.openModal(data);
+  }
+
   openNavigator(e, address) {
     let target = this.platform.is('cordova') ? '_system' : '_blank';
     window.open(`http://maps.google.com/maps?&daddr=${address}`, target);
@@ -62,16 +66,6 @@ export class ListPage implements OnInit {
   openLink(e, url) {
     let target = this.platform.is('cordova') ? '_system' : '_blank';
     window.open(url, '_blank');
-  }
-
-  async openModal(data) {
-    const modalPage = await this.modalCtrl.create({
-      component: ModalPagePage,
-      componentProps: {
-        item: data
-      },
-    });
-    await modalPage.present();
   }
 
   geoZoom(location) {

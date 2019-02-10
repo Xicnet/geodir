@@ -1,20 +1,18 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { Platform } from '@ionic/angular';
-import { ActivatedRoute, ParamMap, Router, NavigationEnd, NavigationStart, ActivationEnd } from '@angular/router';
+import { Router, ActivationEnd } from '@angular/router';
 import { PopoverController } from '@ionic/angular';
-import { ModalController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
-import leaflet from 'leaflet';
 import { DeviceDetectorService } from 'ngx-device-detector';
-
-import { PopoverPage } from './../popover/popover.page';
-import { ModalPagePage } from './../modal-page/modal-page.page';
-import { DataService } from '../providers/data.service';
+import { Observable, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
-
+import leaflet from 'leaflet';
 import 'leaflet';
 import 'leaflet.markercluster';
-import { Observable, Subscription } from 'rxjs';
+
+import { ModalService } from '../providers/modal/modal.service';
+import { DataService } from '../providers/data.service';
+
 declare var jQuery: any;
 
 
@@ -57,7 +55,7 @@ export class Tab1Page {
 
   constructor(public http: HttpClient,
     private popoverController: PopoverController,
-    public modalCtrl : ModalController,
+    public modal : ModalService,
     public platform: Platform,
     public dataService: DataService,
     private router: Router,
@@ -155,7 +153,7 @@ export class Tab1Page {
 
       // Delegate all event handling for the container itself and its contents to the container
       container.on('click', '.more-info-button', () => {
-        this.openModal(item);
+        this.modal.openModal(item);
       });
 
       // Insert whatever you want into the container, using whichever approach you prefer
@@ -219,19 +217,6 @@ export class Tab1Page {
     } else {
       window.open('https://www.google.com/maps/search/?api=1&query=' + coords, '_blank');
     }
-  }
-
-  
-  async openModal(data) {
-    let cssClass = this.deviceService.isMobile() ? '' : 'modal-smaller';
-    const modalPage = await this.modalCtrl.create({
-      component: ModalPagePage,
-      componentProps: {
-        item: data
-      },
-      cssClass: cssClass
-    });
-    await modalPage.present();
   }
 
   centerOnMarker(location) {
