@@ -9,7 +9,7 @@
   <ion-card>
 
     <ion-item>
-      <ion-col padding>
+      <ion-col>
         <ion-card-subtitle (click)="closeModal()">
           <ion-text *ngIf="item.geometry.distance" color="primary">~{{item.geometry.distance}} km</ion-text>
           {{item.properties.address}}
@@ -17,8 +17,6 @@
         <ion-card-title (click)="closeModal()">
           {{item.properties.name}}
         </ion-card-title>
-        <br />
-        <ion-card-content class="nl2br" no-padding (click)="closeModal()" [innerHTML]="item.properties.description"></ion-card-content>
       </ion-col>
     </ion-item>
 
@@ -67,7 +65,10 @@
         </ion-col>
       </ion-row>
     </ion-item>
-
+    
+    <ion-item no-padding>
+      <ion-card-content class="nl2br" padding-top (click)="closeModal()" [innerHTML]="item.properties.description"></ion-card-content>
+    </ion-item>
     <ion-item>
       <div>updated on {{ item.properties.updated }}</div>
     </ion-item>
