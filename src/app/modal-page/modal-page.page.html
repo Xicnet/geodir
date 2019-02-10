@@ -8,17 +8,27 @@
 <ion-content>
   <ion-card>
 
-    <ion-item>
-      <ion-card-title (click)="closeModal()">
-        {{item.properties.name}}
-      </ion-card-title>
+    <ion-item (click)="closeModal()">
+      <ion-card-header>
+        <ion-card-title>
+          {{item.properties.name}}
+        </ion-card-title>
+
+        <ion-card-subtitle>
+          <ion-text *ngIf="item.geometry.distance" color="primary">~{{item.geometry.distance}} km</ion-text>
+          {{item.properties.address}}
+        </ion-card-subtitle>
+        <ion-card-subtitle (click)="closeModal()" *ngIf="item.properties.hours">
+          {{item.properties.hours}}
+        </ion-card-subtitle>
+      </ion-card-header>
     </ion-item>
 
     <ion-item>
-      <ion-card-subtitle (click)="closeModal()">
-        <ion-text *ngIf="item.geometry.distance" color="primary">~{{item.geometry.distance}} km</ion-text>
-        {{item.properties.address}}
-      </ion-card-subtitle>
+      <ion-button fill="clear" style="text-transform: none;" title="See on map" (click)="geoZoom(item.properties.id)">
+        <ion-icon slot="start" name="pin"></ion-icon>
+        See on map
+      </ion-button>
     </ion-item>
 
     <ion-item *ngIf="item.properties.address">
@@ -26,15 +36,6 @@
         <ion-icon slot="start" name="compass"></ion-icon>
         Get directions
       </ion-button>
-    </ion-item>
-
-    <ion-item *ngIf="item.properties.hours">
-      <ion-icon name="time"></ion-icon>
-      <ion-row>
-        <ion-col>
-          {{item.properties.hours}}
-        </ion-col>
-      </ion-row>
     </ion-item>
 
     <ion-item *ngIf="item.properties.website">
