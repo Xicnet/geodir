@@ -65,7 +65,6 @@ export class ListPage implements OnInit {
 
   openLink(e, url) {
     let target = this.platform.is('cordova') ? '_system' : '_blank';
-    alert("opening url: "+ url);
     window.open(url, '_blank');
   }
 
