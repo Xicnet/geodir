@@ -35,6 +35,9 @@
         </ion-row>
 
         <ion-row>
+          <ion-button title="See on map" (click)="geoZoom(item.properties.id)" target="_blank">
+            <ion-icon slot="icon-only" name="pin"></ion-icon>
+          </ion-button>
           <ion-button title="Call now" *ngIf="item.properties.phone" href="tel:{{item.properties.phone}}" target="_system">
             <ion-icon slot="icon-only" name="call"></ion-icon>
           </ion-button>
@@ -45,9 +48,6 @@
             target="_blank">
             <ion-icon slot="icon-only" name="logo-twitter"></ion-icon>
           </ion-button>
-          <ion-button title="See on map" (click)="geoZoom(item.properties.id)" target="_blank">
-            <ion-icon slot="icon-only" name="pin"></ion-icon>
-          </ion-button>
           <ion-button title="Get directions" (click)="openNavigator($event, item.properties.address)" target="_blank">
             <ion-icon slot="icon-only" name="compass"></ion-icon>
           </ion-button>
@@ -57,7 +57,6 @@
           <ion-button title="Edit" href="https://use.fair-coin.org/wp/wp-admin/post.php?post={{item.properties.id}}&action=edit">
             <ion-icon slot="icon-only" name="create"></ion-icon>
           </ion-button>
-
         </ion-row>
 
 

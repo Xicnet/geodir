@@ -10,12 +10,12 @@
     <ion-img (click)="closeModal()" [src]="item.properties.image || 'assets/imgs/default.png'" alt="Use Faircoin"></ion-img>
 
     <ion-item>
-      <ion-col size="10" padding>
-        <ion-card-subtitle>
+      <ion-col padding>
+        <ion-card-subtitle (click)="closeModal()">
           <ion-text *ngIf="item.geometry.distance" color="primary">~{{item.geometry.distance}} km</ion-text>
           {{item.properties.address}}
         </ion-card-subtitle>
-        <ion-card-title>
+        <ion-card-title (click)="closeModal()">
           {{item.properties.name}}
         </ion-card-title>
         <br />
