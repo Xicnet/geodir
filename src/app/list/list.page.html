@@ -16,17 +16,8 @@
     <ion-item *virtualItem="let item">
 
       <ion-card>
-        <!--
-          <ion-item>
-              <ion-avatar slot="start">
-                <ion-img [src]="item.properties.image || 'assets/imgs/default.png'" alt="Use Faircoin"></ion-img>
-              </ion-avatar>
-              <ion-label><ion-text [innerHTML]="item.properties.name"></ion-text></ion-label>
-            </ion-item>
-            -->
-
         <ion-row justify-content-start>
-          <ion-thumbnail item-start >
+          <ion-thumbnail item-start>
             <ion-img [src]="item.properties.image || 'assets/imgs/default.png'" alt="Use Faircoin"></ion-img>
           </ion-thumbnail>
           <ion-col size="10">
@@ -35,7 +26,6 @@
               <ion-text *ngIf="item.geometry.distance" color="primary">~{{item.geometry.distance}} km</ion-text>
               {{item.properties.address}}
             </ion-card-subtitle>
-            
           </ion-col>
         </ion-row>
 
@@ -44,37 +34,36 @@
           </ion-card-content>
         </ion-row>
 
-        <ion-item class="activated">
-          <ion-icon (click)="openNavigator($event, item.properties.address)" name="compass" slot="start" color="primary"></ion-icon>
-          <ion-label>
-            <ion-row>
-              <ion-col>
-                <ion-button color="success" fill="outline" (click)="openModal(item)">+info</ion-button>
-                <a href="https://use.fair-coin.org/wp/wp-admin/post.php?post={{item.properties.id}}&action=edit" target="_blank">
-                  <ion-button fill="outline" slot="end">admin</ion-button>
-                </a>
-              </ion-col>
-            </ion-row>
-          </ion-label>
-        </ion-item>
         <ion-row>
-          <ion-col size="12" nopadding>
-            <ion-card-content no-padding class="card-footer-links">
-              <ion-icon (click)="geoZoom(item.properties.id)" name="pin" slot="start" color="primary"></ion-icon>
-              <a button href="tel:555-555-5555" target="_system">
-                <ion-icon name="call" *ngIf="item.properties.phone"></ion-icon>
-              </a>
-              <a href="{{item.properties.website}}" target="_blank">
-                <ion-icon name="globe" *ngIf="item.properties.website"></ion-icon>
-              </a>
-              <a href="https://twitter.com/{{item.properties.twitter}}" target="_blank">
-                <ion-icon name="logo-twitter" *ngIf="item.properties.twitter"></ion-icon>
-              </a>
-              <span *ngIf="item.properties.hours">{{item.properties.hours}}</span> <span> (updated on {{
-                item.properties.updated }})</span>
-            </ion-card-content>
-          </ion-col>
+          <ion-button title="Call now" *ngIf="item.properties.phone" href="tel:{{item.properties.phone}}" target="_system">
+            <ion-icon slot="icon-only" name="call"></ion-icon>
+          </ion-button>
+          <ion-button title="Open website" *ngIf="item.properties.website" href="{{item.properties.website}}" target="_blank">
+            <ion-icon slot="icon-only" name="globe"></ion-icon>
+          </ion-button>
+          <ion-button title="Open twitter" *ngIf="item.properties.twitter" href="https://twitter.com/{{item.properties.twitter}}"
+            target="_blank">
+            <ion-icon slot="icon-only" name="logo-twitter"></ion-icon>
+          </ion-button>
+          <ion-button title="See on map" (click)="geoZoom(item.properties.id)" target="_blank">
+            <ion-icon slot="icon-only" name="pin"></ion-icon>
+          </ion-button>
+          <ion-button title="Get directions" (click)="openNavigator($event, item.properties.address)" target="_blank">
+            <ion-icon slot="icon-only" name="compass"></ion-icon>
+          </ion-button>
+          <ion-button title="More info" (click)="openModal(item)">
+            <ion-icon slot="icon-only" name="information-circle"></ion-icon>
+          </ion-button>
+          <ion-button title="Edit" href="https://use.fair-coin.org/wp/wp-admin/post.php?post={{item.properties.id}}&action=edit">
+            <ion-icon slot="icon-only" name="create"></ion-icon>
+          </ion-button>
+
         </ion-row>
+
+
+
+
+
       </ion-card>
     </ion-item>
   </ion-virtual-scroll>
