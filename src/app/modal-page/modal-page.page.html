@@ -19,7 +19,7 @@
           {{item.properties.name}}
         </ion-card-title>
         <br />
-        <ion-card-content class="nl2br" no-padding [innerHTML]="item.properties.description"></ion-card-content>
+        <ion-card-content class="nl2br" no-padding (click)="closeModal()" [innerHTML]="item.properties.description"></ion-card-content>
       </ion-col>
     </ion-item>
 
