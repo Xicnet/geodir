@@ -63,6 +63,12 @@ export class ListPage implements OnInit {
     window.open(`http://maps.google.com/maps?&daddr=${address}`, target);
   }
 
+  openLink(e, url) {
+    let target = this.platform.is('cordova') ? '_system' : '_blank';
+    alert("opening url: "+ url);
+    window.open(url, '_blank');
+  }
+
   async openPopover(data) {
     const popover = await this.popoverController.create({
       component: PopoverPage,

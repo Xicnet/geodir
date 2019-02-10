@@ -25,7 +25,6 @@ export class ModalPagePage implements OnInit {
   openNavigator(e, address) {
     let target = this.platform.is('cordova') ? '_system' : '_blank';
     window.open(`http://maps.google.com/maps?&daddr=${address}`, target);
-
   }
 
 }
