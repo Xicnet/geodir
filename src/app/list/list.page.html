@@ -11,10 +11,39 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content text-center padding>
+<ion-content text-center>
   <ion-virtual-scroll [items]="items$ | async">
     <ion-item *virtualItem="let item">
+
       <ion-card>
+        <!--
+          <ion-item>
+              <ion-avatar slot="start">
+                <ion-img [src]="item.properties.image || 'assets/imgs/default.png'" alt="Use Faircoin"></ion-img>
+              </ion-avatar>
+              <ion-label><ion-text [innerHTML]="item.properties.name"></ion-text></ion-label>
+            </ion-item>
+            -->
+
+        <ion-row justify-content-start>
+          <ion-thumbnail item-start >
+            <ion-img [src]="item.properties.image || 'assets/imgs/default.png'" alt="Use Faircoin"></ion-img>
+          </ion-thumbnail>
+          <ion-col size="10">
+            <ion-card-title [innerHTML]="item.properties.name"></ion-card-title>
+            <ion-card-subtitle>
+              <ion-text *ngIf="item.geometry.distance" color="primary">~{{item.geometry.distance}} km</ion-text>
+              {{item.properties.address}}
+            </ion-card-subtitle>
+            
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-card-content [innerHTML]="(item.properties.description.length>200)? (item.properties.description | slice:0:200)+'..':(item.properties.description)">
+          </ion-card-content>
+        </ion-row>
+
         <ion-item class="activated">
           <ion-icon (click)="openNavigator($event, item.properties.address)" name="compass" slot="start" color="primary"></ion-icon>
           <ion-label>
@@ -28,20 +57,6 @@
             </ion-row>
           </ion-label>
         </ion-item>
-        <ion-row justify-content-start>
-          <ion-thumbnail item-start>
-            <ion-img [src]="item.properties.image || 'assets/imgs/default.png'" alt="Use Faircoin"></ion-img>
-          </ion-thumbnail>
-          <ion-col size="10">
-            <ion-card-title [innerHTML]="item.properties.name"></ion-card-title>
-            <ion-card-subtitle>
-              <ion-text *ngIf="item.geometry.distance" color="primary">~{{item.geometry.distance}} km</ion-text>
-              {{item.properties.address}}
-            </ion-card-subtitle>
-            <ion-card-content no-padding [innerHTML]="(item.properties.description.length>200)? (item.properties.description | slice:0:200)+'..':(item.properties.description)">
-            </ion-card-content>
-          </ion-col>
-        </ion-row>
         <ion-row>
           <ion-col size="12" nopadding>
             <ion-card-content no-padding class="card-footer-links">
