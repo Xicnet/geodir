@@ -7,7 +7,6 @@
 
 <ion-content>
   <ion-card>
-    <ion-img (click)="closeModal()" [src]="item.properties.image || 'assets/imgs/default.png'" alt="Use Faircoin"></ion-img>
 
     <ion-item>
       <ion-col padding>
@@ -23,45 +22,41 @@
       </ion-col>
     </ion-item>
 
-    <ion-item *ngIf="item.properties.address">
-      <ion-icon (click)="openNavigator($event, item.properties.address)" name="compass"></ion-icon>
-      <ion-row>
-        <ion-col>
-          <a title="Get directions" (click)="openNavigator($event, item.properties.address)">Directions</a>
-        </ion-col>
-      </ion-row>
+    <ion-item *ngIf="item.properties.faircoin_address">
+      <ion-button fill="clear" style="text-transform: none;" title="">
+        <ion-icon slot="start" name="heart"></ion-icon>
+        {{item.properties.faircoin_address}}
+      </ion-button>
     </ion-item>
 
-
-    <ion-item class="activated" *ngIf="item.properties.phone">
-      <ion-icon name="call"></ion-icon>
-      <ion-row>
-        <ion-col>
-          <a title="Call now" href="tel:{{item.properties.phone}}" target="_system">{{item.properties.phone}}</a>
-        </ion-col>
-      </ion-row>
+    <ion-item *ngIf="item.properties.phone">
+      <ion-button fill="clear" style="text-transform: none;" title="Call now" (click)="openLink($event, 'tel:'+item.properties.phone)">
+        <ion-icon slot="start" name="call"></ion-icon>
+        {{item.properties.phone}}
+      </ion-button>
     </ion-item>
 
     <ion-item *ngIf="item.properties.website">
-      <ion-icon name="globe"></ion-icon>
-      <ion-row>
-        <ion-col>
-          <a title="Open website" href="{{item.properties.website}}" target="_blank">
-            {{item.properties.website}}
-          </a>
-        </ion-col>
-      </ion-row>
+      <ion-button fill="clear" style="text-transform: none;" title="Open website" *ngIf="item.properties.website"
+        (click)="openLink($event, item.properties.website)">
+        <ion-icon slot="start" name="globe"></ion-icon>
+        {{item.properties.website}}
+      </ion-button>
     </ion-item>
 
     <ion-item *ngIf="item.properties.twitter">
-      <ion-icon name="logo-twitter"></ion-icon>
-      <ion-row>
-        <ion-col>
-          <a title="Open twitter" href="https://twitter.com/{{item.properties.twitter}}" target="_blank">
-            {{item.properties.twitter}}
-          </a>
-        </ion-col>
-      </ion-row>
+      <ion-button fill="clear" style="text-transform: none;" title="Open twitter {{item.properties.twitter}}" *ngIf="item.properties.website"
+        (click)="openLink($event, item.properties.twitter)">
+        <ion-icon slot="start" name="logo-twitter"></ion-icon>
+        {{item.properties.twitter}}
+      </ion-button>
+    </ion-item>
+
+    <ion-item *ngIf="item.properties.address">
+      <ion-button fill="clear" style="text-transform: none;" title="Get directions" (click)="openNavigator($event, item.properties.address)">
+        <ion-icon slot="start" name="compass"></ion-icon>
+        Get directions
+      </ion-button>
     </ion-item>
 
     <ion-item *ngIf="item.properties.hours">
@@ -73,19 +68,10 @@
       </ion-row>
     </ion-item>
 
-    <ion-item *ngIf="item.properties.faircoin_address">
-      <ion-icon name="heart"></ion-icon>
-      <ion-row>
-        <ion-col>
-          {{item.properties.faircoin_address}}
-        </ion-col>
-      </ion-row>
-    </ion-item>
-
     <ion-item>
       <div>updated on {{ item.properties.updated }}</div>
     </ion-item>
-
+    <ion-img (click)="closeModal()" [src]="item.properties.image || 'assets/imgs/default.png'" alt="Use Faircoin"></ion-img>
 
   </ion-card>
 </ion-content>
