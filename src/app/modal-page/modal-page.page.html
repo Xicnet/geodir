@@ -27,7 +27,7 @@
       <ion-icon (click)="openNavigator($event, item.properties.address)" name="compass"></ion-icon>
       <ion-row>
         <ion-col>
-          <a button (click)="openNavigator($event, item.properties.address)">Directions</a>
+          <a title="Get directions" (click)="openNavigator($event, item.properties.address)">Directions</a>
         </ion-col>
       </ion-row>
     </ion-item>
@@ -37,7 +37,7 @@
       <ion-icon name="call"></ion-icon>
       <ion-row>
         <ion-col>
-          <a button href="tel:{{item.properties.phone}}" target="_system">{{item.properties.phone}}</a>
+          <a title="Call now" href="tel:{{item.properties.phone}}" target="_system">{{item.properties.phone}}</a>
         </ion-col>
       </ion-row>
     </ion-item>
@@ -46,7 +46,7 @@
       <ion-icon name="globe"></ion-icon>
       <ion-row>
         <ion-col>
-          <a href="{{item.properties.website}}" target="_blank">
+          <a title="Open website" href="{{item.properties.website}}" target="_blank">
             {{item.properties.website}}
           </a>
         </ion-col>
@@ -57,7 +57,7 @@
       <ion-icon name="logo-twitter"></ion-icon>
       <ion-row>
         <ion-col>
-          <a href="https://twitter.com/{{item.properties.twitter}}" target="_blank">
+          <a title="Open twitter" href="https://twitter.com/{{item.properties.twitter}}" target="_blank">
             {{item.properties.twitter}}
           </a>
         </ion-col>
