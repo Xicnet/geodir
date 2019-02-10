@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavParams, ModalController } from '@ionic/angular';
 import { Platform } from '@ionic/angular';
+import { LinksService } from '../providers/links/links.service';
 
 @Component({
   selector: 'app-modal-page',
@@ -10,8 +11,9 @@ import { Platform } from '@ionic/angular';
 export class ModalPagePage implements OnInit {
   item = null;
 
-  constructor(private navParams: NavParams, private popoverController: ModalController,
-    public platform: Platform
+  constructor(private navParams: NavParams,
+    private popoverController: ModalController,
+    public links: LinksService,
   ) { }
 
   ngOnInit() {
@@ -23,8 +25,11 @@ export class ModalPagePage implements OnInit {
   }
 
   openNavigator(e, address) {
-    let target = this.platform.is('cordova') ? '_system' : '_blank';
-    window.open(`http://maps.google.com/maps?&daddr=${address}`, target);
+    this.links.openNavigator(address);
+  }
+
+  openLink(e, url) {
+    this.links.openLink(url);
   }
 
 }

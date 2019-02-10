@@ -10,7 +10,7 @@ export class ModalService {
 
   constructor(
     public modalCtrl: ModalController,
-    private deviceService: DeviceDetectorService
+    private deviceService: DeviceDetectorService,
   ) { }
 
   public async openModal(data) {

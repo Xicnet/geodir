@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Platform } from '@ionic/angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NavController } from '@ionic/angular';
 import { FormControl } from '@angular/forms';
@@ -7,6 +6,7 @@ import { debounceTime } from 'rxjs/operators';
 
 import { DataService } from '../providers/data.service';
 import { ModalService } from '../providers/modal/modal.service';
+import { LinksService } from '../providers/links/links.service';
 
 @Component({
   selector: 'app-list',
@@ -20,9 +20,9 @@ export class ListPage implements OnInit {
   searching: any = false;
 
   constructor(public navCtrl: NavController, public dataService: DataService,
-    public platform: Platform,
     private geolocation: Geolocation,
     public modal: ModalService,
+    public links: LinksService,
   ) {
     this.searchControl = new FormControl();
   }
@@ -59,13 +59,11 @@ export class ListPage implements OnInit {
   }
 
   openNavigator(e, address) {
-    let target = this.platform.is('cordova') ? '_system' : '_blank';
-    window.open(`http://maps.google.com/maps?&daddr=${address}`, target);
+    this.links.openNavigator(address);
   }
 
   openLink(e, url) {
-    let target = this.platform.is('cordova') ? '_system' : '_blank';
-    window.open(url, '_blank');
+    this.links.openLink(url);
   }
 
   geoZoom(location) {

@@ -3,7 +3,6 @@ import { Platform } from '@ionic/angular';
 import { Router, ActivationEnd } from '@angular/router';
 import { PopoverController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
-import { DeviceDetectorService } from 'ngx-device-detector';
 import { Observable, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import leaflet from 'leaflet';
@@ -12,6 +11,7 @@ import 'leaflet.markercluster';
 
 import { ModalService } from '../providers/modal/modal.service';
 import { DataService } from '../providers/data.service';
+import { LinksService } from '../providers/links/links.service';
 
 declare var jQuery: any;
 
@@ -59,8 +59,7 @@ export class Tab1Page {
     public platform: Platform,
     public dataService: DataService,
     private router: Router,
-    private deviceService: DeviceDetectorService
-
+    public links: LinksService,
   ) {
     this.iconUfcSpot = leaflet.icon({
       iconUrl: '/assets/imgs/ufcspot.png',
@@ -209,14 +208,8 @@ export class Tab1Page {
 
   }
 
-  openNavigator(e, coordinates) {
-    let coords = coordinates;
-    //let coords = coordinates[1]+','+coordinates[0]
-    if (this.platform.is('cordova')) {
-      window.open('geo:?q=' + coords, '_blank');
-    } else {
-      window.open('https://www.google.com/maps/search/?api=1&query=' + coords, '_blank');
-    }
+  openLink(e, url) {
+    this.links.openLink(url);
   }
 
   centerOnMarker(location) {
