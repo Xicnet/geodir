@@ -29,25 +29,11 @@ export class ListPage implements OnInit {
 
   ngOnInit() {
     // Get listing
-    this.items$ = this.dataService.getGeoJSON();
+    this.items$ = this.dataService.items$;
     this.searchControl.valueChanges.pipe(debounceTime(300)).subscribe(search => {
       this.searching = false;
-      this.setFilteredItems(search);
+      this.items$ = this.dataService.filterItems(search);
     });
-
-    this.geolocation.getCurrentPosition().then((resp) => {
-      this.searching = true;
-      this.dataService.sortNearBy(resp.coords.latitude, resp.coords.longitude).subscribe(res => this.searching = false);
-    }).catch((error) => {
-      console.log('Error getting location', error);
-    });
-
-  }
-
-  setFilteredItems(search) {
-    console.log("setFilteredItems search: ", search);
-    this.items$ = this.dataService.filterItems(search);
-    console.log(this.items$.subscribe());
   }
 
   onSearchInput() {

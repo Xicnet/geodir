@@ -119,7 +119,7 @@ export class Tab1Page {
     this.addMyMarker();
     this.locations = leaflet.markerClusterGroup();
 
-    this.dataService.getGeoJSON().subscribe(res => {
+    this.dataService.items$.subscribe(res => {
       this.updateMarkers(res);
       this.centerOnMarker(this.location);
     });
