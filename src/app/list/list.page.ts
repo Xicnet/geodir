@@ -58,14 +58,9 @@ export class ListPage implements OnInit {
     this.searching = true;
   }
 
-  openNavigator(e, coordinates) {
-    let coords = coordinates;
-    //let coords = coordinates[1]+','+coordinates[0]
-    if (this.platform.is('cordova')) {
-      window.open('geo:?q=' + coords, '_blank');
-    } else {
-      window.open('https://www.google.com/maps/search/?api=1&query=' + coords, '_blank');
-    }
+  openNavigator(e, address) {
+    let target = this.platform.is('cordova') ? '_system' : '_blank';
+    window.open(`http://maps.google.com/maps?&daddr=${address}`, target);
   }
 
   async openPopover(data) {
