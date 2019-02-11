@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar (click)="closeModal()">
-    <ion-title style="float: left; vertical-align: center" [innerHTML]="item.properties.name">
-    </ion-title>
+    <h3><ion-text padding-start color="secondary" style="float: left; vertical-align: center" [innerHTML]="item.properties.name">
+    </ion-text></h3>
   </ion-toolbar>
 </ion-header>
 
@@ -10,10 +10,6 @@
 
     <ion-item (click)="closeModal()">
       <ion-card-header>
-        <ion-card-title>
-          {{item.properties.name}}
-        </ion-card-title>
-
         <ion-card-subtitle>
           <ion-text *ngIf="item.geometry.distance" color="primary">~{{item.geometry.distance}} km</ion-text>
           {{item.properties.address}}
