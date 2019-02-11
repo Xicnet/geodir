@@ -156,7 +156,7 @@ export class Tab1Page {
       });
 
       // Insert whatever you want into the container, using whichever approach you prefer
-      container.html(`<div><b>` + item.properties.name + `</b><br/>` + item.properties.address + `</b><br/>` + description + `</div>`);
+      container.html(`<div><b>` + item.properties.name + `</b><br/>` + item.properties.address + `<p>` +  description + `</p></div>`);
       container.append(`<ion-button class="more-info-button" expand="full">+info</ion-button>`);
 
       // Insert the container into the popup
