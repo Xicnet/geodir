@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavParams, ModalController } from '@ionic/angular';
-import { Platform } from '@ionic/angular';
+import { NavParams, ModalController, NavController } from '@ionic/angular';
 import { LinksService } from '../providers/links/links.service';
 
 @Component({
@@ -14,6 +13,7 @@ export class ModalPagePage implements OnInit {
   constructor(private navParams: NavParams,
     private popoverController: ModalController,
     public links: LinksService,
+    public navCtrl: NavController,
   ) { }
 
   ngOnInit() {
@@ -32,4 +32,8 @@ export class ModalPagePage implements OnInit {
     this.links.openLink(url);
   }
 
+  geoZoom(location) {
+    this.navCtrl.navigate(`/tabs/map?location=${location}`, {});
+    this.closeModal();
+  }
 }
