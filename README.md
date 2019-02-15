@@ -1,29 +1,107 @@
-  This software is a proof-of-concept on how to use a dettached UI which gets data
-  from a backend via an API serving JSON.
 
-  In this case we are displaying locations which accept Faircoins.
+# Intro
+
+This is a simple app made with Ionic 4 +Angular 7, which can be plugged to any API (or static) GeoJSON data source to display locations on a map (Leaflet) using OpenStreetMaps.
+
+It provides also a listing of locations, with a simple search. The search looks into the name, description and address fields.
+
+**If your GPS is turned on and you allow your brower permission to access it, the listing will be sorted by those nearest to you first.**
+
+For privacy reasons, we don't use a third party provider to find the locations near by. Instead we use the Haversine Formula, which calculates the distance over a single line: https://en.wikipedia.org/wiki/Haversine_formula
+
+For the directions, we are calling the native maps app for mobiles, and for desktop, temporarily gmaps. We will replace the latter as soon as we have a working replacement.
+
+The GeoJSON looks like this:
+```
+{
+    "geometry": {
+        "coordinates": [
+            "4.865687699999967",
+            "52.3600834"
+        ],
+        "type": "Point"
+    },
+    "properties": {
+        "address": "Overtoom 301, Amsterdam, Netherlands",
+        "categories": {
+            "category.name": {
+                "icon_name": "icon_name",
+                "name": "category_name"
+            }
+        },
+        "date": "Feb/2019",
+        "description": "",
+        "faircoin_address": "xxxx",
+        "hours": "Mon-Sun: 24hs",
+        "id": 24326,
+        "image": "",
+        "name": "OT301",
+        "phone": "+4423235235235234",
+        "updated": "Feb/2019",
+        "website": "https://fair.coop"
+    },
+    "type": "Feature"
+},
+
+```
+
+That means that if you have a backend with locations which can output on that format, you could easily plug this app to it and see your own locations.
+
+You might need to tweak the fields according to your data structure.
 
 
-  The backend is currently an independent OCP (valuenetwork (*)) install using GraphQL
-  to serve the frontend, made in Ionic 4 which is great for mobile apps.
+# Install
 
-  Here we display the GeoLocation of the user (you!) so you can easily find who accept
-  Faircoins around you.
+#### 1) Check your Ionic installation
 
-  It's more recommended and reasonable to try it on your phone with GPS activated.
+This app is made with Ionic 4, so you need to install it first.
+You do that essentialy with:
+```
+ npm install -g ionic
+```
+For more details see: https://ionicframework.com/docs/installation/cli
+
+You can check your Ionic version by running:
+```
+ionic --version
+```
+
+### 2. Install dependencies
+
+Once you have ionic 4, run the following on your copy of this repository to install all dependencies for this project:
+
+```
+$ npm i
+```
+### 3. Run the app in development mode
+
+If all went well, run the development server with:
+```
+ionic serve -c
+```
+# Contributing
+
+Fork this project, clone the fork and do your commits there.
+After you push your changes, send us a pull request that we will review and merge if applies.
+
+# Roadmap
+
+* Rename project to something more generic
+* Move project to GitHub
+* Add listing info page by slug (to avoid breaking previous links)
+* Add SEO stuff?
+* Feature freeze
+* Finish some layout and cosmetics
+* Open for beta
+* Fix bugs or issues
+* Release
+* Announce
 
 
+# History
 
-  This was done in collaboration with several FairCoop members and is open for ideas,
-  feature requests, pull requests (mostly!), and contributions (See contributors tab)
+This software started a proof-of-concept on how to use a dettached UI which gets data from a backend via an API serving JSON with the locations from use.fair-coin.org.
 
-  WARNING: this is alpha software and might not work well on every browser yet.
+The backend started being an independent OCP (valuenetwork) install using GraphQL to serve the contents to this UI. Later we changed to a REST API provided by faircoop's site. You can find the GraphQL example use on the first commits of this repo.
 
-  There is the option to build this as a mobile app, where GeoLocation works
-  much more reliably than with regular browsers.
-
-
-  Source Code Repository
-
-  https://git.aps.systems/rama/ufc-frontend
-
+This was started in collaboration with several FairCoop members and is open for ideas, feature requests, pull requests (mostly!), and contributions.
