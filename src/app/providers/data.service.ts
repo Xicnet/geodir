@@ -42,7 +42,7 @@ export class DataService {
     private geolocation: Geolocation,
   ) {
     this.getGeoJSON();
-    this.geoLocate();
+    //this.geoLocate();
   }
 
   public getGeoJSON(): Observable<any> {
@@ -97,6 +97,7 @@ export class DataService {
       map(items =>
         items.filter(item => (
           item.properties.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1
+          || item.properties.slug.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1
           || item.properties.description.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1
           || item.properties.address.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1)
         )

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LinksService } from '../providers/links/links.service';
 import { NavController } from '@ionic/angular';
 import { DataService } from '../providers/data.service';
@@ -17,7 +17,8 @@ export class DetailPage implements OnInit {
     private route: ActivatedRoute,
     public links: LinksService,
     public dataService: DataService,
-    public navCtrl: NavController
+    public navCtrl: NavController,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -31,6 +32,9 @@ export class DetailPage implements OnInit {
 
   }
 
+  closeModal() {
+    this.router.navigate(['/tabs/list', {q: this.item.properties.slug}]);
+  }
   openNavigator(e, address) {
     this.links.openNavigator(address);
   }
