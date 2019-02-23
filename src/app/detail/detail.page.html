@@ -1,11 +1,11 @@
-<ion-header>
+<ion-header *ngIf="item!=null">
   <ion-toolbar (click)="closeModal()">
     <h3><ion-text padding-start color="secondary" style="float: left; vertical-align: center" [innerHTML]="item.properties.name">
     </ion-text></h3>
   </ion-toolbar>
 </ion-header>
 
-<ion-content *ngIf="item">
+<ion-content *ngIf="item!=null">
   <ion-card>
 
     <ion-item (click)="closeModal()">
