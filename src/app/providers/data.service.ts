@@ -103,4 +103,18 @@ export class DataService {
       )
     )
   }
+
+  getItemBySlug(slug) {
+    
+    return this.items$.pipe(
+      map(items =>
+        items.filter(item => (
+          item.properties.slug.toLowerCase().indexOf(slug.toLowerCase()) > -1
+        )
+        )
+      )
+    )
+
+
+  }
 }
