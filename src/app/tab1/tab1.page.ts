@@ -192,7 +192,8 @@ export class Tab1Page {
         this.myMarker.setLatLng([e.latitude, e.longitude]);
         this.myMarker.setIcon(this.iconSelf);
       } else {
-        this.map.setView([e.latitude, e.longitude], 5);
+        // Not looking at a specific location, center on user
+        if(!this.location) this.map.setView([e.latitude, e.longitude], 5);
         // Create marker
         this.myMarker = leaflet.marker([e.latitude, e.longitude], { icon: this.iconSelf });
         this.myMarker.setZIndexOffset(1);
@@ -218,7 +219,7 @@ export class Tab1Page {
     let marker = this.marker[location];
 
     //this.map.flyTo(marker._latlng, 18);
-    this.map.setView(marker._latlng, 18);
+    this.map.setView(marker._latlng, 12);
     marker.openPopup(leaflet.latLng(marker._latlng));
 
   }
