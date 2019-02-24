@@ -88,8 +88,6 @@ After you push your changes, send us a pull request that we will review and merg
 
 * Rename project to something more generic
 * Move project to GitHub
-* Add listing info page by slug (to avoid breaking previous links)
-* Add SEO stuff?
 * Feature freeze
 * Finish some layout and cosmetics
 * Open for beta
