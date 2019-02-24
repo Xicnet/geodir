@@ -57,6 +57,7 @@ export class DataService {
     return this.items$;
   }
 
+
   sortNearBy(lat, lon): Observable<any> {
     //console.log("sortNearBy: ", lat, lon);
     this.searching = true;
@@ -106,8 +107,11 @@ export class DataService {
   }
 
   getItemBySlug(slug) {
-    
-    return this.items$.pipe(
+      let item$ = this.http.get<any>(apiUrl+'?slug='+slug)
+        .pipe(shareReplay(1),
+          map(res => res.response)
+        );
+    return item$.pipe(
       map(items =>
         items.filter(item => (
           item.properties.slug.toLowerCase().indexOf(slug.toLowerCase()) > -1
