@@ -7,7 +7,6 @@ import { IonicModule } from '@ionic/angular';
 
 import { ModalPagePage } from './modal-page.page';
 import { SharedModule } from '../shared/shared.module';
-//import { DetailsComponent } from '../shared/details/details.component';
 
 const routes: Routes = [
   {

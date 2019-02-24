@@ -12,6 +12,7 @@
 </ion-header>
 
 <ion-content text-center>
+  <ion-row padding *ngIf="(items$ | async)?.length==0">Nothing found, try another search.</ion-row>
   <ion-virtual-scroll [items]="items$ | async">
     <ion-item *virtualItem="let item">
 
