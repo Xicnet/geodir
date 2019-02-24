@@ -4,7 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   { path: '', loadChildren: './tabs/tabs.module#TabsPageModule' },
   { path: 'popover', loadChildren: './popover/popover.module#PopoverPageModule' },
-  { path: 'modal-page', loadChildren: './modal-page/modal-page.module#ModalPagePageModule' }
+  { path: 'modal-page', loadChildren: './modal-page/modal-page.module#ModalPagePageModule' },
+  { path: 'listings/:slug', loadChildren: './detail/detail.module#DetailPageModule' }
 ];
 @NgModule({
   imports: [

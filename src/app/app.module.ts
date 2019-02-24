@@ -44,7 +44,7 @@ export function createApollo(httpLink: HttpLink) {
     DeviceDetectorModule.forRoot(),
     AppRoutingModule,
     PopoverPageModule,
-    ModalPagePageModule,
+    ModalPagePageModule
   ],
   providers: [
     {

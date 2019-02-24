@@ -42,7 +42,7 @@ export class DataService {
     private geolocation: Geolocation,
   ) {
     this.getGeoJSON();
-    this.geoLocate();
+    //this.geoLocate();
   }
 
   public getGeoJSON(): Observable<any> {
@@ -56,6 +56,7 @@ export class DataService {
     }
     return this.items$;
   }
+
 
   sortNearBy(lat, lon): Observable<any> {
     //console.log("sortNearBy: ", lat, lon);
@@ -97,10 +98,28 @@ export class DataService {
       map(items =>
         items.filter(item => (
           item.properties.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1
+          || item.properties.slug.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1
           || item.properties.description.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1
           || item.properties.address.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1)
         )
       )
     )
+  }
+
+  getItemBySlug(slug) {
+      let item$ = this.http.get<any>(apiUrl+'?slug='+slug)
+        .pipe(shareReplay(1),
+          map(res => res.response)
+        );
+    return item$.pipe(
+      map(items =>
+        items.filter(item => (
+          item.properties.slug.toLowerCase().indexOf(slug.toLowerCase()) > -1
+        )
+        )
+      )
+    )
+
+
   }
 }
