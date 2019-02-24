@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ModalController, NavController } from '@ionic/angular';
+import { LinksService } from 'src/app/providers/links/links.service';
 
 @Component({
   selector: 'listing-details',
@@ -8,9 +10,28 @@ import { Component, OnInit, Input } from '@angular/core';
 export class DetailsComponent implements OnInit {
   @Input() item: any;
   
-  constructor() { }
+  constructor(
+    private popoverController: ModalController,
+    public links: LinksService,
+    public navCtrl: NavController) { }
 
   ngOnInit() {
   }
 
+  closeModal() {
+    this.popoverController.dismiss();
+  }
+
+  openNavigator(e, address) {
+    this.links.openNavigator(address);
+  }
+
+  openLink(e, url) {
+    this.links.openLink(url);
+  }
+
+  geoZoom(location) {
+    this.navCtrl.navigate(`/tabs/map?location=${location}`, {});
+    this.closeModal();
+  }
 }
