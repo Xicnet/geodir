@@ -38,13 +38,13 @@
           <ion-button title="See on map" (click)="geoZoom(item.properties.id)">
             <ion-icon slot="icon-only" name="pin"></ion-icon>
           </ion-button>
-          <ion-button title="Call now" *ngIf="item.properties.phone" (click)="openLink($event, 'tel:'+item.properties.phone)">
+          <ion-button title="Call now" [disabled]="!item.properties.phone" (click)="openLink($event, 'tel:'+item.properties.phone)">
             <ion-icon slot="icon-only" name="call"></ion-icon>
           </ion-button>
-          <ion-button title="Open website {{item.properties.website}}" *ngIf="item.properties.website" (click)="openLink($event, item.properties.website)">
+          <ion-button title="Open website {{item.properties.website}}" [disabled]="!item.properties.website" (click)="openLink($event, item.properties.website)">
             <ion-icon slot="icon-only" name="globe"></ion-icon>
           </ion-button>
-          <ion-button title="Open twitter {{item.properties.twitter}}" *ngIf="item.properties.twitter" (click)="openLink($event, item.properties.twitter)">
+          <ion-button title="Open twitter {{item.properties.twitter}}" [disabled]="!item.properties.twitter" (click)="openLink($event, item.properties.twitter)">
             <ion-icon slot="icon-only" name="logo-twitter"></ion-icon>
           </ion-button>
           <ion-button title="Get directions" (click)="openNavigator($event, item.properties.address)">
