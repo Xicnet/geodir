@@ -6,6 +6,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { ModalPagePage } from './modal-page.page';
+import { SharedModule } from '../shared/shared.module';
+//import { DetailsComponent } from '../shared/details/details.component';
 
 const routes: Routes = [
   {
@@ -19,7 +21,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    SharedModule,
   ],
   declarations: [ModalPagePage]
 })

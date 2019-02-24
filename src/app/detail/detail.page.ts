@@ -26,7 +26,6 @@ export class DetailPage implements OnInit {
 
     // FIXME : this should fetch the requested record instead
     this.dataService.getItemBySlug(this.slug).subscribe(item => {
-      console.log("item: ", item[0]);
       this.item = item[0];
     });
 
