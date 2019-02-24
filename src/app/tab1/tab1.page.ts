@@ -94,7 +94,6 @@ export class Tab1Page {
 
   ngOnInit() {
     this.map = leaflet.map("map");
-    console.log("did enter this.coords: ", this.coords, " location: ", this.location);
     this.loadmap();
   }
 
@@ -103,6 +102,7 @@ export class Tab1Page {
   }
 
   ionViewDidEnter() {
+    this.map.invalidateSize();
     this.dataService.items$.subscribe(res => {
       if (this.location) this.centerOnMarker(this.location);
     });
@@ -219,7 +219,7 @@ export class Tab1Page {
     let marker = this.marker[location];
 
     //this.map.flyTo(marker._latlng, 18);
-    this.map.setView(marker._latlng, 12);
+    this.map.setView(marker._latlng, 18);
     marker.openPopup(leaflet.latLng(marker._latlng));
 
   }
