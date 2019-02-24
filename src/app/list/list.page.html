@@ -39,6 +39,12 @@
           <ion-button title="See on map" (click)="geoZoom(item.properties.id)">
             <ion-icon slot="icon-only" name="pin"></ion-icon>
           </ion-button>
+          <ion-button title="Get directions" (click)="openNavigator($event, item.properties.address)">
+            <ion-icon slot="icon-only" name="compass"></ion-icon>
+          </ion-button>
+          <ion-button title="More info" (click)="openModal(item)">
+            <ion-icon slot="icon-only" name="information-circle"></ion-icon>
+          </ion-button>
           <ion-button title="Call now" [disabled]="!item.properties.phone" (click)="openLink($event, 'tel:'+item.properties.phone)">
             <ion-icon slot="icon-only" name="call"></ion-icon>
           </ion-button>
@@ -48,15 +54,11 @@
           <ion-button title="Open twitter {{item.properties.twitter}}" [disabled]="!item.properties.twitter" (click)="openLink($event, item.properties.twitter)">
             <ion-icon slot="icon-only" name="logo-twitter"></ion-icon>
           </ion-button>
-          <ion-button title="Get directions" (click)="openNavigator($event, item.properties.address)">
-            <ion-icon slot="icon-only" name="compass"></ion-icon>
-          </ion-button>
-          <ion-button title="More info" (click)="openModal(item)">
-            <ion-icon slot="icon-only" name="information-circle"></ion-icon>
-          </ion-button>
+          <!--
           <ion-button title="Edit" (click)="openLink($event, 'https://use.fair-coin.org/wp/wp-admin/post.php?action=edit&post='+item.properties.id)">
             <ion-icon slot="icon-only" name="create"></ion-icon>
           </ion-button>
+          -->
         </ion-row>
 
 
