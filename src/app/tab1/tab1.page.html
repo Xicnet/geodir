@@ -1,10 +1,14 @@
-
-
 <ion-header>
   <ion-toolbar>
-    <ion-title>
-     <img src="/assets/imgs/logo_ufc.png" alt="Use Faircoin" height="30px" >
+    <ion-title slot="start">
+      <img src="/assets/imgs/logo_ufc.png" alt="Use Faircoin" height="30px">
     </ion-title>
+    <ion-text class="version" color="secondary">3.0-beta1</ion-text>
+    <ion-buttons slot="end">
+      <ion-button (click)="openLink($event, 'https://use.fair-coin.org/add-listing/')" target="_blank">
+        <ion-icon name="add" color="secondary"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
