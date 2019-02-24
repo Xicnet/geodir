@@ -95,6 +95,12 @@ After you push your changes, send us a pull request that we will review and merg
 * Release
 * Announce
 
+# Next milestone
+
+* Implement QR code for donation address
+* Implement multilanguage
+* Implement categories
+
 
 # History
 
