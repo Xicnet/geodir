@@ -46,10 +46,6 @@ export class DetailPage implements OnInit {
     this.links.openTwitter(url);
   }
 
-  openTwitter(e, url) {
-    this.links.openTwitter(url);
-  }
-
   geoZoom(location) {
     this.navCtrl.navigate(`/tabs/map?location=${location}`, {});
   }
