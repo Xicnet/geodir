@@ -17,8 +17,8 @@
     <ion-item *virtualItem="let item">
 
       <ion-card>
-        <ion-row justify-content-start (click)="openModal(item)">
-          <ion-thumbnail item-start>
+        <ion-row justify-content-start>
+          <ion-thumbnail item-start (click)="openLink($event, 'https://use.fair-coin.org/wp/wp-admin/post.php?action=edit&post='+item.properties.id)">
             <ion-img [src]="item.properties.image || 'assets/imgs/default.png'" alt="Use Faircoin"></ion-img>
           </ion-thumbnail>
           <ion-col size="10">
@@ -51,7 +51,7 @@
           <ion-button title="Open website {{item.properties.website}}" [disabled]="!item.properties.website" (click)="openLink($event, item.properties.website)">
             <ion-icon slot="icon-only" name="globe"></ion-icon>
           </ion-button>
-          <ion-button title="Open twitter {{item.properties.twitter}}" [disabled]="!item.properties.twitter" (click)="openLink($event, item.properties.twitter)">
+          <ion-button title="Open twitter {{item.properties.twitter}}" [disabled]="!item.properties.twitter" (click)="openTwitter($event, item.properties.twitter)">
             <ion-icon slot="icon-only" name="logo-twitter"></ion-icon>
           </ion-button>
           <!--

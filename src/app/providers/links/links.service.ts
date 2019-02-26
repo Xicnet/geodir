@@ -15,6 +15,10 @@ export class LinksService {
     window.open(url, '_blank');
   }
 
+  openTwitter(url) {
+    this.openLink('https://twitter.com/'+url);
+  }
+
   openNavigator(address) {
     let target = this.platform.is('cordova') ? '_system' : '_blank';
     window.open(`http://maps.google.com/maps?&daddr=${address}`, target);

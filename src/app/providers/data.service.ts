@@ -8,8 +8,8 @@ import { filter } from 'rxjs/operators';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 
-const apiUrl = "https://use.fair-coin.org/wp-json/custom/v1/all-posts";
-//const apiUrl = "http://localhost:83/wp-json/custom/v1/all-posts";
+//const apiUrl = "https://use.fair-coin.org/wp-json/custom/v1/all-posts";
+const apiUrl = "http://localhost:83/wp-json/custom/v1/all-posts";
 
 // Haversine formula to calculate distance roughly
 function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {

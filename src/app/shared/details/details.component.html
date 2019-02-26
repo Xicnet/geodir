@@ -2,7 +2,7 @@
   <ion-card-header>
     <ion-card-subtitle>
       <ion-text *ngIf="item.geometry.distance" color="primary">~{{item.geometry.distance}} km</ion-text>
-      {{item.properties.address}}
+      {{item.properties.address}} <ion-button (click)="openLink($event, 'https://use.fair-coin.org/wp/wp-admin/post.php?action=edit&post='+item.properties.id)">admin</ion-button>
     </ion-card-subtitle>
     <ion-card-subtitle *ngIf="item.properties.hours">
       {{item.properties.hours}}
@@ -32,7 +32,7 @@
 </ion-item>
 
 <ion-item *ngIf="item.properties.twitter">
-  <ion-button fill="clear" style="text-transform: none;" title="Open twitter {{item.properties.twitter}}" (click)="openLink($event, item.properties.twitter)">
+  <ion-button fill="clear" style="text-transform: none;" title="Open twitter {{item.properties.twitter}}" (click)="openTwitter($event, item.properties.twitter)">
     <ion-icon slot="start" name="logo-twitter"></ion-icon>
     {{item.properties.twitter}}
   </ion-button>

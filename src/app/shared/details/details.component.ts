@@ -30,6 +30,10 @@ export class DetailsComponent implements OnInit {
     this.links.openLink(url);
   }
 
+  openTwitter(e, url) {
+    this.links.openTwitter(url);
+  }
+
   geoZoom(location) {
     this.navCtrl.navigate(`/tabs/map?location=${location}`, {});
     this.closeModal();
