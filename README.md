@@ -99,11 +99,8 @@ After you push your changes, send us a pull request that we will review and merg
 
 # Roadmap
 
-* Rename project to something more generic
-* Move project to GitHub
-* Feature freeze
-* Finish some layout and cosmetics
 * Open for beta
+* Finish some minor layout and cosmetics
 * Fix bugs or issues
 * Release
 * Announce
@@ -119,6 +116,6 @@ After you push your changes, send us a pull request that we will review and merg
 
 This software started a proof-of-concept on how to use a dettached UI which gets data from a backend via an API serving JSON with the locations from use.fair-coin.org.
 
-The backend started being an independent OCP (valuenetwork) install using GraphQL to serve the contents to this UI. Later we changed to a REST API provided by faircoop's site. You can find the GraphQL example use on the first commits of this repo.
+The backend started being an independent OCP (valuenetwork) install using GraphQL to serve the contents to this UI. Later we changed to a REST API serving GeoJSON and provided by faircoop's site. You can find the GraphQL example use on the first commits of this repo.
 
 This was started in collaboration with several FairCoop members and is open for ideas, feature requests, pull requests (mostly!), and contributions.
