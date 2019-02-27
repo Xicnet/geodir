@@ -1,9 +1,22 @@
+# Demo
+
+https://use-faircoin-again.thedata.me/tabs/map
 
 # Intro
 
-This is a simple app made with Ionic 4 +Angular 7, which can be plugged to any API (or static) GeoJSON data source to display locations on a map (Leaflet) using OpenStreetMaps.
+This is is a geolocations directory.
 
-It provides also a listing of locations, with a simple search. The search looks into the name, description and address fields.
+Basically it reads a GeoJSON data source, whose records include Geo-coords (Lat/Lon) and shows those locations as markers on a map. It also provides a listing with a simple search.
+
+The search looks into the name, description and address fields.
+
+It's quite generic and could be reused for any kind of project which would like to map a list of locations and display them along with any related data they might have.
+
+So if you have a project which needs a tool like this one, please, fork it and use it! If you send us pull requests, we'll be happy to review and add them.
+
+This project was started by a group of FairCoop members  ( https://fair.coop ) with a new approach to find locations where to pay for products or services using FairCon near you.
+
+It's made with Ionic 4 +Angular 7, which can be plugged to any API (or static) GeoJSON data source to display locations on a map (Leaflet) using OpenStreetMaps.
 
 **If your GPS is turned on and you allow your brower permission to access it, the listing will be sorted by those nearest to you first.**
 
