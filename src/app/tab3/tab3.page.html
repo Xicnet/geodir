@@ -3,17 +3,54 @@
     <ion-grid>
       <ion-row>
         <ion-title text-left>
-          <img src="/assets/imgs/icon.png" alt="Use Faircoin" width="30px" >
+          <img src="/assets/imgs/icon.png" alt="Use Faircoin" width="30px">
         </ion-title>
-          <ion-col padding-horizontal>
-            <ion-text  padding-bottom text-right color="primary"><h4>Infomation</h4></ion-text>
-          </ion-col>
+        <ion-col padding-horizontal>
+          <ion-text padding-bottom text-right color="primary">
+            <h4>Infomation</h4>
+          </ion-text>
+        </ion-col>
       </ion-row>
     </ion-grid>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
+  <ion-list-header color="tertiary">
+    <h1>Description</h1>
+  </ion-list-header>
+  <ion-item>
+    This is a directory browser with geolocation to find locations accepting faircoins near you.
+  </ion-item>
+
+  <ion-list-header color="tertiary">
+    <h1>Contact</h1>
+  </ion-list-header>
+  <ion-item>
+    <a href="mailto:info@usefaircoin.org" class="Internet_20_link">info@usefaircoin.org</a>
+  </ion-item>
+
+  <ion-list-header color="tertiary">
+    <h1>Info</h1>
+  </ion-list-header>
+  <ion-item>
+    <div>
+      <p>Source Code Repository</p>
+      <p><a href="https://github.com/Xicnet/geodir" class="Internet_20_link">https://github.com/Xicnet/geodir</a></p>
+
+      <p>Produced by <a href="https://fair.coop/">
+          Fair.coop
+        </a>
+      </p>
+    </div>
+  </ion-item>
+
+  <ion-list-header color="tertiary">
+    <h1>Licenced under GPL 3.0</h1>
+  </ion-list-header>
+  <ion-item>
+    <a href="https://www.gnu.org/licenses/gpl-3.0.txt">https://www.gnu.org/licenses/gpl-3.0.txt</a>
+  </ion-item>
 
   <ion-list-header color="tertiary">
     <h1>Contibutors</h1>
@@ -42,31 +79,6 @@
   <ion-item>
     Trid
   </ion-item>
-  <ion-item color="tertiary">
-    <h1>Licenced under GPL 3.0</h1>
-  </ion-item>
-  <p><a href="https://www.gnu.org/licenses/gpl-3.0.txt">https://www.gnu.org/licenses/gpl-3.0.txt</a></p>
-  <ion-card padding>
-    <ion-item  text-center color="tertiary">
-      <h1>Description</h1>
-    </ion-item>
-    <p><b>This software is a proof-of-concept on how to use a dettached UI which gets data from a backend via an API serving JSON.</b></p>
-    <p>In this case we are displaying locations which accept Faircoins.</p>
-    <p>Initially, the backend was an independent OCP (valuenetwork (*)) install using GraphQL, however for practical purposes, we've switched to use the Wordpress REST API from use.fair-coin.org</p>
-    <p><b>Here we display the GeoLocation of the user (you!) so you can easily find who accepts Faircoins around you.</b></p>
-    <p><b>It's recommended and reasonable to try it on your phone with GPS activated.</b></p>
-    <p>This was done in collaboration with several FairCoop members and is open for ideas, feature requests, pull requests (mostly!), and contributions (See contributors tab)</p>
-    <p>WARNING: this is alpha software and might not work well on every browser yet.</p>
-    <p>There is the option to build this as a mobile app, where GeoLocation works much more reliably than with regular browsers.</p>
-    <p>Source Code Repository</p>
-    <p><a href="https://git.aps.systems/rama/ufc-frontend" class="Internet_20_link">https://git.aps.systems/rama/ufc-frontend</a></p>
-    <p>(*) <a href="https://github.com/FreedomCoop/valuenetwork" class="Internet_20_link">https://github.com/FreedomCoop/valuenetwork</a></p>
-    <a href="https://fair.coop/">
-      Fair.coop
-    </a>
-  </ion-card>
-
-
 
 </ion-content>
 
