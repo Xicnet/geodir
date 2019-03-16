@@ -6,6 +6,16 @@ ion-searchbar {
   --placeholder-opacity: 0.5;
 }
 
+.sc-ion-card-md-h {
+    --background: var(--ion-item-background,transparent);
+    --color: var(--ion-color-step-550,#737373);
+    margin: 20px 0 !important;
+    border-radius: 0;
+    font-size: 14px;
+    -webkit-box-shadow: 0 0 0;
+    box-shadow: 0 0 0;
+}
+
 page-home {
   .spinner-container {
     width: 100%;
