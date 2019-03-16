@@ -34,6 +34,9 @@ export class DetailsComponent implements OnInit {
     this.links.openTwitter(url);
   }
 
+  mailto(email) {
+    this.links.mailto('mailto:'+email);
+  }
   geoZoom(location) {
     this.navCtrl.navigate(`/tabs/map?location=${location}`, {});
     this.closeModal();
