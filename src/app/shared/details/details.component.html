@@ -13,9 +13,7 @@
           <ion-card-header>
             <ion-card-subtitle>
               <ion-text *ngIf="item.geometry.distance" color="primary">~{{item.geometry.distance}} km</ion-text>
-              {{item.properties.address}} <ion-button
-                (click)="openLink($event, 'https://use.fair-coin.org/wp/wp-admin/post.php?action=edit&post='+item.properties.id)">
-                admin</ion-button>
+              {{item.properties.address}}
             </ion-card-subtitle>
             <ion-card-subtitle *ngIf="item.properties.hours">
               {{item.properties.hours}}
