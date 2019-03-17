@@ -42,7 +42,7 @@ export class DataService {
     private geolocation: Geolocation,
   ) {
     this.getGeoJSON();
-    //this.geoLocate();
+    this.geoLocate();
   }
 
   public getGeoJSON(): Observable<any> {

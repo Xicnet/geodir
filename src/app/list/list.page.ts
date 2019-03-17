@@ -36,7 +36,6 @@ export class ListPage implements OnInit {
       this.items$ = this.dataService.filterItems(q);
     } else {
       this.items$ = this.dataService.items$;
-      this.dataService.geoLocate();
     }
 
     // Get listing
