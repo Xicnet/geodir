@@ -7,9 +7,6 @@
     </ion-col>
     <ion-col size="8">
       <div>
-
-
-        <ion-item>
           <ion-card-header>
             <ion-card-subtitle>
               <ion-text *ngIf="item.geometry.distance" color="primary">~{{item.geometry.distance}} km</ion-text>
@@ -19,68 +16,66 @@
               {{item.properties.hours}}
             </ion-card-subtitle>
           </ion-card-header>
-        </ion-item>
-
-        <ion-item>
-          <ion-button fill="clear" style="text-transform: none;" title="See on map"
-            (click)="geoZoom(item.properties.id)">
-            <ion-icon slot="start" name="pin"></ion-icon>
-            See on map
-          </ion-button>
-        </ion-item>
-
-        <ion-item *ngIf="item.properties.address">
-          <ion-button fill="clear" style="text-transform: none;" title="Get directions"
-            (click)="openNavigator($event, item.properties.address)">
-            <ion-icon slot="start" name="compass"></ion-icon>
-            Get directions
-          </ion-button>
-        </ion-item>
-
-        <ion-item *ngIf="item.properties.website">
-          <ion-button fill="clear" style="text-transform: none;" title="Open website"
-            (click)="openLink($event, item.properties.website)">
-            <ion-icon slot="start" name="globe"></ion-icon>
-            {{item.properties.website}}
-          </ion-button>
-        </ion-item>
-
-        <ion-item *ngIf="item.properties.twitter">
-          <ion-button fill="clear" style="text-transform: none;" title="Open twitter {{item.properties.twitter}}"
-            (click)="openTwitter($event, item.properties.twitter)">
-            <ion-icon slot="start" name="logo-twitter"></ion-icon>
-            {{item.properties.twitter}}
-          </ion-button>
-        </ion-item>
-
-        <ion-item *ngIf="item.properties.faircoin_address">
-          <ion-button fill="clear" style="text-transform: none;" title="">
-            <ion-icon slot="start" name="heart"></ion-icon>
-            {{item.properties.faircoin_address}}
-          </ion-button>
-        </ion-item>
-
-        <ion-item *ngIf="item.properties.phone">
-          <ion-button fill="clear" style="text-transform: none;" title="Call now"
-            (click)="openLink($event, 'tel:'+item.properties.phone)">
-            <ion-icon slot="start" name="call"></ion-icon>
-            {{item.properties.phone}}
-          </ion-button>
-        </ion-item>
-
-        <ion-item *ngIf="item.properties.email">
-          <a href="mailto:{{item.properties.email}}">
-            <ion-button fill="clear" style="text-transform: none;" title="Send an email">
-              <ion-icon slot="start" name="mail-open"></ion-icon>
-              Mail to {{item.properties.email}}
-            </ion-button>
-          </a>
-        </ion-item>
 
       </div>
     </ion-col>
   </ion-row>
 </ion-grid>
+
+<ion-item>
+  <ion-button fill="clear" style="text-transform: none;" title="See on map" (click)="geoZoom(item.properties.id)">
+    <ion-icon slot="start" name="pin"></ion-icon>
+    See on map
+  </ion-button>
+</ion-item>
+
+<ion-item *ngIf="item.properties.address">
+  <ion-button fill="clear" style="text-transform: none;" title="Get directions"
+    (click)="openNavigator($event, item.properties.address)">
+    <ion-icon slot="start" name="compass"></ion-icon>
+    Get directions
+  </ion-button>
+</ion-item>
+
+<ion-item *ngIf="item.properties.website">
+  <ion-button fill="clear" style="text-transform: none;" title="Open website"
+    (click)="openLink($event, item.properties.website)">
+    <ion-icon slot="start" name="globe"></ion-icon>
+    {{item.properties.website}}
+  </ion-button>
+</ion-item>
+
+<ion-item *ngIf="item.properties.twitter">
+  <ion-button fill="clear" style="text-transform: none;" title="Open twitter {{item.properties.twitter}}"
+    (click)="openTwitter($event, item.properties.twitter)">
+    <ion-icon slot="start" name="logo-twitter"></ion-icon>
+    {{item.properties.twitter}}
+  </ion-button>
+</ion-item>
+
+<ion-item *ngIf="item.properties.faircoin_address">
+  <ion-button fill="clear" style="text-transform: none;" title="">
+    <ion-icon slot="start" name="heart"></ion-icon>
+    {{item.properties.faircoin_address}}
+  </ion-button>
+</ion-item>
+
+<ion-item *ngIf="item.properties.phone">
+  <ion-button fill="clear" style="text-transform: none;" title="Call now"
+    (click)="openLink($event, 'tel:'+item.properties.phone)">
+    <ion-icon slot="start" name="call"></ion-icon>
+    {{item.properties.phone}}
+  </ion-button>
+</ion-item>
+
+<ion-item *ngIf="item.properties.email">
+  <a href="mailto:{{item.properties.email}}">
+    <ion-button fill="clear" style="text-transform: none;" title="Send an email">
+      <ion-icon slot="start" name="mail-open"></ion-icon>
+      Mail to {{item.properties.email}}
+    </ion-button>
+  </a>
+</ion-item>
 
 <ion-item no-padding>
   <ion-card-content class="nl2br" padding-top [innerHTML]="item.properties.description"></ion-card-content>
