@@ -1,17 +1,15 @@
 <ion-header>
   <ion-toolbar>
-    <ion-grid>
-      <ion-row>
-        <ion-title text-left>
-          <img src="/assets/imgs/icon.png" alt="Use Faircoin" width="30px">
+    <ion-row>
+      <ion-col float-left>
+        <img src="/assets/imgs/icon.png" alt="Use Faircoin" height="30px">
+      </ion-col>
+      <ion-col size="10" float-right>
+        <ion-title>
+          <ion-text padding-start color="secondary">About UseFaircoin</ion-text>
         </ion-title>
-        <ion-col padding-horizontal>
-          <ion-text padding-bottom text-right color="primary">
-            <h4>Infomation</h4>
-          </ion-text>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+      </ion-col>
+    </ion-row>
   </ion-toolbar>
 </ion-header>
 
@@ -20,79 +18,92 @@
     <ion-card-header>
       <ion-card-title>Description</ion-card-title>
     </ion-card-header>
-  <ion-card-content>
-    This is a directory browser with geolocation to find locations accepting faircoins near you.
-  </ion-card-content>
+    <ion-card-content>
+      <p>This is a directory browser with geolocation to find shops and services accepting Faircoin near you.</p>
+      <br />
+      <p>You will need to allow access to your GPS to get to get your geolocation. The listings will be ordered by the
+        nearest to you first.</p>
+      <br />
+      <p>Note that the distance shown on this app is really approximate, since we don't use any 3rd party service for
+        that due to privacy reasons.
+        <br />To calculate the distance, we use the Haversine formula, which considers a direct line to destination,
+        therefore it will always be less than the distance shown by navigation systems which consider real routes
+        instead of a direct line.
+      </p>
+      <br />
+      <p>If you are not on our directory yet, you can add your spot using the "+" button on the homepage.</p>
+
+    </ion-card-content>
   </ion-card>
 
   <ion-card>
     <ion-card-header>
       <ion-card-title>Contact</ion-card-title>
     </ion-card-header>
-  <ion-card-content>
-    <a href="mailto:info@usefaircoin.org" class="Internet_20_link">info@usefaircoin.org</a>
-  </ion-card-content>
+    <ion-card-content>
+      <a href="mailto:info@usefaircoin.org" class="Internet_20_link">info@usefaircoin.org</a>
+    </ion-card-content>
   </ion-card>
 
 
-<ion-card>
+  <ion-card>
     <ion-card-header>
       <ion-card-title>Info</ion-card-title>
     </ion-card-header>
-  <ion-card-content>
-    <div>
-      <p>Source Code Repository</p>
-      <p><a href="https://github.com/Xicnet/geodir" class="Internet_20_link">https://github.com/Xicnet/geodir</a></p>
+    <ion-card-content>
+      <div>
+        <p>Source Code Repository</p>
+        <p><a href="https://github.com/Xicnet/geodir" class="Internet_20_link">https://github.com/Xicnet/geodir</a></p>
 
-      <p>Produced by <a href="https://fair.coop/">
-          Fair.coop
-        </a>
-      </p>
-    </div>
-  </ion-card-content>
+        <p>Produced by <a href="https://fair.coop/">
+            Fair.coop
+          </a>
+        </p>
+      </div>
+    </ion-card-content>
   </ion-card>
 
   <ion-card>
     <ion-card-header>
       <ion-card-title>Licenced under GPL 3.0</ion-card-title>
     </ion-card-header>
-  <ion-card-content>
-    <a href="https://www.gnu.org/licenses/gpl-3.0.txt">https://www.gnu.org/licenses/gpl-3.0.txt</a>
-  </ion-card-content>
+    <ion-card-content>
+      <a href="https://www.gnu.org/licenses/gpl-3.0.txt">https://www.gnu.org/licenses/gpl-3.0.txt</a>
+    </ion-card-content>
   </ion-card>
 
   <ion-card>
     <ion-card-header>
-      <ion-card-title>Contibutors</ion-card-title>
+      <ion-card-title>Contributors</ion-card-title>
     </ion-card-header>
     <ion-list>
       <ion-item>
-    Bumbum
-  </ion-item>
-  <ion-item>
-    Onix
-  </ion-item>
-  <ion-item>
-    Lynn Foster
-  </ion-item>
-  <ion-item>
-    Oncle Phil
-  </ion-item>
-  <ion-item>
-    Bernini
-  </ion-item>
-  <ion-item>
-    Rama
-  </ion-item>
-  <ion-item>
-    Apardo
-  </ion-item>
-  <ion-item>
-    Trid
-  </ion-item>
-  <ion-item>
-    Albert Isern Alvarez
-  </ion-item>
+        Bumbum
+      </ion-item>
+      <ion-item>
+        Onix
+      </ion-item>
+      <ion-item>
+        Lynn Foster
+      </ion-item>
+      <ion-item>
+        Oncle Phil
+      </ion-item>
+      <ion-item>
+        Bernini
+      </ion-item>
+      <ion-item>
+        Rama
+      </ion-item>
+      <ion-item>
+        Apardo
+      </ion-item>
+      <ion-item>
+        Trid
+      </ion-item>
+      <ion-item>
+        Albert Isern Alvarez
+      </ion-item>
     </ion-list>
   </ion-card>
 
