@@ -94,11 +94,9 @@
 
 <ion-item>
   <ion-row class="updated-date" slot="end">
-    <ion-text>Updated on {{ item.properties.updated }}</ion-text>
+    <ion-text>
+      <ion-text padding-start color="secondary" [innerHTML]="item.properties.name">
+      </ion-text> was updated on {{ item.properties.updated }}
+    </ion-text>
   </ion-row>
-</ion-item>
-
-<ion-item>
-  <ion-text padding-start color="secondary" [innerHTML]="item.properties.name">
-  </ion-text>
 </ion-item>
