@@ -19,12 +19,6 @@ export class LinksService {
     this.openLink('https://twitter.com/'+url);
   }
 
-  mailto(email) {
-    this.platform.ready().then(() => {
-        window.open(email);
-    });
-  }
-
   openNavigator(address) {
     let target = this.platform.is('cordova') ? '_system' : '_blank';
     window.open(`http://maps.google.com/maps?&daddr=${address}`, target);

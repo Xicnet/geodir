@@ -5,7 +5,8 @@
         <img src="/assets/imgs/logo_ufc.png" alt="Use Faircoin" height="30px">
       </ion-col>
       <ion-col size="10" float-right>
-        <ion-searchbar [formControl]="searchControl" (ionInput)="onSearchInput()" placeholder="Search FairCoin Locations"></ion-searchbar>
+        <ion-searchbar [formControl]="searchControl" (ionInput)="onSearchInput()"
+          placeholder="Search FairCoin Locations"></ion-searchbar>
       </ion-col>
     </ion-row>
   </ion-toolbar>
@@ -18,7 +19,8 @@
 
       <ion-card>
         <ion-row justify-content-start>
-          <ion-thumbnail item-start (click)="openLink($event, 'https://use.fair-coin.org/wp/wp-admin/post.php?action=edit&post='+item.properties.id)">
+          <ion-thumbnail item-start
+            (click)="openLink($event, 'https://use.fair-coin.org/wp/wp-admin/post.php?action=edit&post='+item.properties.id)">
             <ion-img [src]="item.properties.image || 'assets/imgs/default.png'" alt="Use Faircoin"></ion-img>
           </ion-thumbnail>
           <ion-col size="10">
@@ -31,7 +33,8 @@
         </ion-row>
 
         <ion-row (click)="openModal(item)">
-          <ion-card-content [innerHTML]="(item.properties.description.length>200)? (item.properties.description | slice:0:200)+'..':(item.properties.description)">
+          <ion-card-content
+            [innerHTML]="(item.properties.description.length>200)? (item.properties.description | slice:0:200)+'..':(item.properties.description)">
           </ion-card-content>
         </ion-row>
 
@@ -45,20 +48,19 @@
           <ion-button title="More info" (click)="openModal(item)">
             <ion-icon slot="icon-only" name="information-circle"></ion-icon>
           </ion-button>
-          <ion-button title="Call now" [disabled]="!item.properties.phone" (click)="openLink($event, 'tel:'+item.properties.phone)">
+          <ion-button title="Call now" [disabled]="!item.properties.phone"
+            (click)="openLink($event, 'tel:'+item.properties.phone)">
             <ion-icon slot="icon-only" name="call"></ion-icon>
           </ion-button>
-          <ion-button title="Open website {{item.properties.website}}" [disabled]="!item.properties.website" (click)="openLink($event, item.properties.website)">
+          <ion-button title="Open website {{item.properties.website}}" [disabled]="!item.properties.website"
+            (click)="openLink($event, item.properties.website)">
             <ion-icon slot="icon-only" name="globe"></ion-icon>
           </ion-button>
-          <ion-button title="Open twitter {{item.properties.twitter}}" [disabled]="!item.properties.twitter" (click)="openTwitter($event, item.properties.twitter)">
-            <ion-icon slot="icon-only" name="logo-twitter"></ion-icon>
-          </ion-button>
-          <!--
-          <ion-button title="Edit" (click)="openLink($event, 'https://use.fair-coin.org/wp/wp-admin/post.php?action=edit&post='+item.properties.id)">
-            <ion-icon slot="icon-only" name="create"></ion-icon>
-          </ion-button>
-          -->
+          <a href="mailto:{{item.properties.email}}">
+            <ion-button title="Send mail to {{item.properties.email}}" [disabled]="!item.properties.email">
+              <ion-icon slot="icon-only" name="mail-open"></ion-icon>
+            </ion-button>
+          </a>
         </ion-row>
 
 

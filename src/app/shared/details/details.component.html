@@ -31,14 +31,6 @@
           </ion-button>
         </ion-item>
 
-        <ion-item *ngIf="item.properties.email">
-          <ion-button fill="clear" style="text-transform: none;" title="Send an email"
-            (click)="mailto(item.properties.email)">
-            <ion-icon slot="start" name="mail-open"></ion-icon>
-            Mail to {{item.properties.email}}
-          </ion-button>
-        </ion-item>
-
         <ion-item *ngIf="item.properties.address">
           <ion-button fill="clear" style="text-transform: none;" title="Get directions"
             (click)="openNavigator($event, item.properties.address)">
@@ -78,6 +70,14 @@
           </ion-button>
         </ion-item>
 
+        <ion-item *ngIf="item.properties.email">
+          <a href="mailto:{{item.properties.email}}">
+            <ion-button fill="clear" style="text-transform: none;" title="Send an email">
+              <ion-icon slot="start" name="mail-open"></ion-icon>
+              Mail to {{item.properties.email}}
+            </ion-button>
+          </a>
+        </ion-item>
 
       </div>
     </ion-col>
