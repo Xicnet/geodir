@@ -8,7 +8,7 @@ import { filter } from 'rxjs/operators';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 
-const apiUrl = "https://use.fair-coin.org/wp-json/custom/v1/all-posts";
+const apiUrl = "https://data.usefaircoin.org/wp-json/custom/v1/all-posts";
 //const apiUrl = "http://localhost:83/wp-json/custom/v1/all-posts";
 
 // Haversine formula to calculate distance roughly
